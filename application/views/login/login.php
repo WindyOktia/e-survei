@@ -35,23 +35,24 @@
                                                 <span>Silahkan Login atau <i>Register</i></span>
                                             </h4>
                                         </div>
-                                        <form class="">
+                                        <form class="" action="<?php echo site_url('login/login');?>" method="post">
                                             <div class="form-row">
                                                 <div class="col-md-12">
-                                                    <div class="position-relative form-group"><input name="email" id="exampleEmail" placeholder="NIPD" type="" class="form-control"></div>
+                                                    <div class="position-relative form-group"><input name="nipd" id="exampleEmail" placeholder="NIPD" type="" class="form-control" required></div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <div class="position-relative form-group"><input name="password" id="examplePassword" placeholder="Password" type="password" class="form-control"></div>
+                                                    <div class="position-relative form-group"><input name="password" id="examplePassword" placeholder="Password" type="password" class="form-control" required></div>
                                                 </div>
                                             </div>
-                                        </form>
+                                        
                                     </div>
                                     <div class="modal-footer clearfix">
-                                        <div class="float-left"><a href="<?= base_url(); ?>/Welcome/regis" class="btn-lg btn btn-link">Register</a></div>
+                                        <div class="float-left"><a href="<?= base_url(); ?>/login/validasi" class="btn-lg btn btn-link">Register</a></div>
                                         <div class="float-right">
-                                            <button class="btn btn-primary btn-lg">Login</button>
+                                            <button class="btn btn-primary btn-lg" type="submit">Login</button>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

@@ -96,7 +96,7 @@
                                         <i class="metismenu-state-icon fa fa-caret-down"></i>
                                     </a>
                                     <ul <?php if($page =='tbhAdmin'||$page =='dftAdmin'):?>class="mm-show"<?php endif;?>>
-                                        <li><a <?php if($page =='tbhAdmin'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/tbhAdmin">Tambah Admin</a></li>
+                                        <li><a <?php if($page =='tbhAdmin'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/Admin">Tambah Admin</a></li>
                                         <li><a <?php if($page =='dftAdmin'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/dftAdmin"href="#">Daftar Admin</a></li>
                                     </ul>
                                 </li>
@@ -147,46 +147,7 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left">
                                             <div class="btn-group">
-                                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                    class="p-0 btn">
-                                                    <i class="fa fa-user-circle" style="font-size:20px"></i>
-                                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                                </a>
-                                                <div tabindex="-1" role="menu" aria-hidden="true"
-                                                    class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
-                                                    <div class="dropdown-menu-header">
-                                                        <div class="dropdown-menu-header-inner bg-info">
-                                                            <div class="menu-header-image opacity-2"
-                                                                style="background-image: url('<?= base_url(); ?>assets/images/dropdown-header/city1.jpg');">
-                                                            </div>
-                                                            <div class="menu-header-content text-left">
-                                                                <div class="widget-content p-0">
-                                                                    <div class="widget-content-wrapper">
-                                                                        <div class="widget-content-left mr-3">
-                                                                            <img width="42" class="rounded-circle"
-                                                                                src="<?= base_url(); ?>assets/images/avatars/3.jpg"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="widget-content-left">
-                                                                            <div class="widget-heading">Minnie Betts
-                                                                            </div>
-                                                                            <div class="widget-subheading opacity-8">A
-                                                                                short profile description
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="widget-content-right mr-2">
-                                                                            <button
-                                                                                class="btn-pill btn-shadow btn-shine btn btn-focus">Logout
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    
-                                                </div>
+                                            <a href="<?= base_url(); ?>login/logout" class="mr-2 btn-pill btn-transition btn btn-outline-primary">Logout</a>
                                             </div>
                                         </div>
                                     </div>

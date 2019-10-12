@@ -1,63 +1,47 @@
+<div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+    <?php if ($this->session->flashdata('flash')) : ?>
+    <!-- <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Data mahasiswa <strong>berhasil</strong> <?= $this->session->flashdata('flash'); ?>.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div> -->
+    <?php endif; ?>
+
+
 <div class="card mb-3">
-                                            <div class="card-header-tab card-header">
-                                                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                                                    <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Daftar Siswa Belum Regist
-                                                </div>
-                                                <div class="btn-actions-pane-right actions-icon-btn">
-                                                    <div class="btn-group dropdown">
-                                                        <button type="button" data-toggle="dropdown" aria-haspopup="true"
-                                                                aria-expanded="false"
-                                                                class="btn-icon btn-icon-only btn btn-link"><i
-                                                                class="pe-7s-menu btn-icon-wrapper"></i></button>
-                                                        <div tabindex="-1" role="menu" aria-hidden="true"
-                                                             class="dropdown-menu-right rm-pointers dropdown-menu-shadow dropdown-menu-hover-link dropdown-menu">
-                                                            <h6 tabindex="-1" class="dropdown-header">
-                                                                Header</h6>
-                                                            <button type="button" tabindex="0" class="dropdown-item"><i
-                                                                    class="dropdown-icon lnr-inbox"> </i><span>Menus</span>
-                                                            </button>
-                                                            <button type="button" tabindex="0" class="dropdown-item"><i
-                                                                    class="dropdown-icon lnr-file-empty"> </i><span>Settings</span>
-                                                            </button>
-                                                            <button type="button" tabindex="0" class="dropdown-item"><i
-                                                                    class="dropdown-icon lnr-book"> </i><span>Actions</span>
-                                                            </button>
-                                                            <div tabindex="-1" class="dropdown-divider"></div>
-                                                            <div class="p-3 text-right">
-                                                                <button class="mr-2 btn-shadow btn-sm btn btn-link">View
-                                                                    Details
-                                                                </button>
-                                                                <button class="mr-2 btn-shadow btn-sm btn btn-primary">
-                                                                    Action
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <table style="width: 100%;" id="example"
-                                                       class="table table-hover table-striped table-bordered">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>  
+    <div class="card-header-tab card-header">
+        <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+            <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Daftar Siswa Belum Regist
+        </div>
+    </div>
+    <div class="card-body">
+        <table style="width: 100%;" id="example"
+                class="table table-hover table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>NIPD</th>
+                <th>Nama Ibu</th>
+                <th>Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php $i = 1; foreach ($nonregis as $non) : ?>
+                <tr>
+                <td class="align-middle"><?= $i++ ?></td>
+                    <td class="align-middle"><?= $non['nama']; ?></td>
+                    <td class="align-middle"><?= $non['nipd']; ?></td>
+                    <td class="align-middle"><?= $non['nama_ibu']; ?></td>
+                    <td class="align-middle"><a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/<?= $non['id']; ?>">Edit</a><a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusSiswa/<?= $non['id']; ?>">Hapus</a></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>  

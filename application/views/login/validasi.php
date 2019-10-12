@@ -35,27 +35,24 @@
                                                 <span>Registrasi Siswa</span>
                                             </h4>
                                         </div>
-                                        <form class=""action="<?= base_url();?>login/tbhUser" method="post">
+                                        <form class="" action="<?php echo site_url('login/auth');?>" method="post">
                                             <div class="form-row">
                                                 <div class="col-md-12">
-                                                    <p class="mb-2"><strong>Identitas Anda :</strong></p>
-                                                    <p class="mb-1">Nama : <?php echo $this->session->userdata('nama');?></p>
-                                                    <p class="mb-2">NIPD : <?php echo $this->session->userdata('nipd');?></p>
-                                                    <p class="mb-2">Nama Ibu : <?php echo $this->session->userdata('nama_ibu');?></p>
+                                                    <div class="position-relative form-group"><input name="nipd" id="exampleEmail" placeholder="NIPD" type="" class="form-control" required></div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <div class="position-relative form-group"><input name="password" id="examplePassword" placeholder="Password Baru" type="password" class="form-control" required></div>
+                                                    <div class="position-relative form-group"><input name="namaIbu" id="examplePassword" placeholder="Nama Lengkap Ibu" type="" class="form-control" required></div>
                                                 </div>
                                             </div>
                                     </div>
                                     <div class="modal-footer clearfix">
-                                        <div class="float-left"><a href="<?= base_url();?>/login/logout" class="btn-lg btn btn-link">Kembali</a></div>
+                                        <div class="float-left"><a href="<?= base_url(); ?>" class="btn-lg btn btn-link">Kembali</a></div>
                                         <div class="float-right">
-                                            <button class="btn btn-primary btn-lg">Register</button>
+                                            <button class="btn btn-primary btn-lg" type="submit">Validasi</button>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
-                                </form>
                             </div>
                         </div>
                     </div>

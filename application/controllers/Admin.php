@@ -8,7 +8,13 @@ class Admin extends CI_Controller
         $this->load->model('Kelas_model');
         $this->load->model('Guru_model');
         $this->load->model('Kuesioner_model');
+        $this->load->model('Siswa_model');
+        $this->load->model('login_model');
         $this->load->library('form_validation');
+        
+        if($this->login_model->is_role() != "1"){
+            redirect("forbidden/");
+        }
     }
 
     public function index()
@@ -71,28 +77,73 @@ class Admin extends CI_Controller
 
 // Siswa
 
-    public function tbhDataSiswa()
+    public function dataSiswa()
     {
         $data['page']='tbhDataSiswa';
+        $data['kelas'] = $this->Kelas_model->getAll();
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/tbhDataSiswa');
+        $this->load->view('admin/tbhDataSiswa', $data);
         $this->load->view('templates/footer');  
+    }
+
+    public function tbhDataSiswa()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nipd', 'NIPD', 'required|numeric');
+        $this->form_validation->set_rules('kelas', 'Kelas', 'required');
+        $this->form_validation->set_rules('namaIbu', 'NamaIbu', 'required');
+
+        if ($this->form_validation->run() == false) {
+            redirect('admin/dataSiswa');
+        } else {
+            $this->Siswa_model->Add();
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            redirect('admin/dataSiswa');
+        }
+    }
+
+    public function tbhMultiDataSiswa()
+    {
+        $kelas = $this->input->post('kelas',TRUE);
+		$nama = $this->input->post('siswa',TRUE);
+		$nipd = $this->input->post('nipd',TRUE);
+		$namaIbu = $this->input->post('namaIbu',TRUE);
+        $this->Siswa_model->addMulti($kelas,$nama,$nipd,$namaIbu);
+        $this->session->set_flashdata('flash', 'Ditambahkan');
+		redirect('admin/dataSiswa');
     }
 
     public function siswaNonRegis()
     {
         $data['page']='siswaNonRegis';
+        $data['nonregis'] = $this->Siswa_model->getNonRegis();
+
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/siswaNonRegis');
+        $this->load->view('admin/siswaNonRegis', $data);
         $this->load->view('templates/footer');  
     }
 
     public function userSiswa()
     {
         $data['page']='userSiswa';
+        $data['user'] = $this->Siswa_model->getUser();
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/userSiswa');
+        $this->load->view('admin/userSiswa', $data);
         $this->load->view('templates/footer');  
+    }
+
+    public function hapusSiswa($id)
+    {
+        $this->Siswa_model->delete($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('admin/siswaNonRegis');
+    }
+
+    public function hapusUserSiswa($id)
+    {
+        $this->Siswa_model->deleteUser($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('admin/userSiswa');
     }
 //-------------------------------------------------- End Siswa
 
@@ -207,18 +258,47 @@ class Admin extends CI_Controller
 		redirect('admin/pertanyaan');
     }
 
-//-------------------------------------------------- End Pertanyaan   
-    public function tbhAdmin()
+//-------------------------------------------------- End Pertanyaan  
+
+//Admin
+    public function admin()
     {
         $data['page']='tbhAdmin';
         $this->load->view('templates/header', $data);
+        $this->load->view('admin/tbhDataAdmin');  
         $this->load->view('templates/footer');  
     }
 
     public function dftAdmin()
     {
         $data['page']='dftAdmin';
+        $data['admin'] = $this->login_model->getAdmin();
         $this->load->view('templates/header', $data);
+        $this->load->view('admin/dftAdmin',$data);  
         $this->load->view('templates/footer');  
     }
+
+    public function tbhAdmin()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nipd', 'Nama', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        if ($this->form_validation->run() == false) {
+            redirect('admin/admin');
+        } else {   
+            $this->login_model->addUserAdmin();
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            redirect('admin/admin');
+        }
+    }
+
+    public function hapusAdmin($id)
+    {
+        $this->login_model->deleteAdmin($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('admin/dftAdmin');
+    }
+
+//-------------------------------------------------- End Admin
 }
+

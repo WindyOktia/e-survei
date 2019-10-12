@@ -17,7 +17,7 @@
 <div class="card mb-3">
                                             <div class="card-header-tab card-header">
                                                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                                                    <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Detail Registrasi Siswa
+                                                    <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Detail Registrasi Admin
                                                 </div>
                                                 
                                             </div>
@@ -28,19 +28,17 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama</th>
-                                                        <th>NIPD</th>
-                                                        <th>Nama Ibu</th>
+                                                        <th>NIPD Admin</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <?php $i = 1; foreach ($user as $user) : ?>
+                                                    <?php $i = 1; foreach ($admin as $admin) : ?>
                                                         <tr>
                                                         <td class="align-middle"><?= $i++ ?></td>
-                                                            <td class="align-middle"><?= $user['nama']; ?></td>
-                                                            <td class="align-middle"><?= $user['nipd']; ?></td>
-                                                            <td class="align-middle"><?= $user['nama_ibu']; ?></td>
-                                                            <td class="align-middle"><a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/<?= $user['id']; ?>">Edit</a><a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusUserSiswa/<?= $user['id']; ?>">Hapus</a></td>
+                                                            <td class="align-middle"><?= $admin['nama']; ?></td>
+                                                            <td class="align-middle"><?= $admin['nipd']; ?></td>
+                                                            <td class="align-middle"><a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/<?= $admin['id']; ?>">Edit</a><a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusAdmin/<?= $admin['id']; ?>">Hapus</a></td>
                                                         </tr>
                                                         <?php endforeach; ?>
                                                     </tbody>
