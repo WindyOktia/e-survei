@@ -74,12 +74,10 @@ class Login extends CI_controller
         $this->form_validation->set_rules('password', 'Password', 'required');
         $id=$this->session->userdata('id');
         if ($this->form_validation->run() == false) {
-            echo $this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">Masukkan Password</div>');
             redirect('login/validasi');
         } else {   
             $this->login_model->addUser();
             $this->login_model->deleteTmp($id);
-            echo $this->session->set_flashdata('msg','<div class="alert alert-success" role="alert">Registrasi Berhasil, Silahkan Login untuk melanjutkan</div>');
             redirect('welcome/');
         }
     }

@@ -45,35 +45,69 @@ class Admin extends CI_Controller
 
 // KuesionerGuru
 
-    public function tbhKuesionerGuru()
+    public function KuesionerGuru()
     {
         $data['page']='tbhKuesionerGuru';
+        $data['guru'] = $this->Guru_model->getAll();
+        $data['survei'] = $this->Kuesioner_model->getAllSurveiGuru();
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/tbhKuesionerGuru');
+        $this->load->view('admin/tbhKuesionerGuru', $data);
         $this->load->view('templates/footer');  
+    }
+
+    public function tbhKuesionerGuru()
+    {
+        $guru = $this->input->post('guru',TRUE);
+		$mulai = $this->input->post('mulai',TRUE);
+		$selesai = $this->input->post('selesai',TRUE);
+        $this->Kuesioner_model->AddKuesionerGuru($guru, $mulai,$selesai);
+        $this->session->set_flashdata('flash', 'Ditambahkan');
+		redirect('admin/KuesionerGuru');
+    }
+
+    public function hapusKuesionerGuru($id)
+    {
+        $this->Kuesioner_model->deleteKuesionerGuru($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('admin/KuesionerGuru');
     }
 
 //-------------------------------------------------- End Kuesioner Guru
 
 //KuesionerKegiatan
-    public function tbhKuesionerKegiatan()
+    public function KuesionerKegiatan()
     {
         $data['page']='tbhKuesionerKegiatan';
+        $data['kategori']=$this->Kuesioner_model->getKategori();
+        $data['survei'] = $this->Kuesioner_model->getAllSurveiKegiatan();
+        $data['kelas']=$this->Kelas_model->getAll();
+
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/tbhKuesionerKegiatan');
+        $this->load->view('admin/tbhKuesionerKegiatan', $data);
         $this->load->view('templates/footer');  
+    }
+
+    public function tbhKuesioner()
+    {
+        $judul = $this->input->post('judul',TRUE);
+		$deskripsi = $this->input->post('deskripsi',TRUE);
+		$kategori = $this->input->post('kategori',TRUE);
+		$kelas = $this->input->post('kelas',TRUE);
+		$mulai = $this->input->post('mulai',TRUE);
+		$selesai = $this->input->post('selesai',TRUE);
+        $this->Kuesioner_model->AddKuesioner($judul,$deskripsi,$kategori,$kelas,$mulai,$selesai);
+        $this->session->set_flashdata('flash', 'Ditambahkan');
+		redirect('admin/KuesionerKegiatan');
+    }
+
+    public function hapusKuesioner($id)
+    {
+        $this->Kuesioner_model->deleteKuesioner($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('admin/KuesionerKegiatan');
     }
 //-------------------------------------------------- End Kuesioner Kegiatan
 
-//DaftarKuesioner
-    public function dftKuesioner()
-    {
-        $data['page']='dftKuesioner';
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/footer');  
-    }
-
-//-------------------------------------------------- End Daftar Kuesioner
 
 // Siswa
 
@@ -258,6 +292,41 @@ class Admin extends CI_Controller
 		redirect('admin/pertanyaan');
     }
 
+//-------------------------------------------------- End Pertanyaan
+
+//Aspek Penilaian Guru
+
+    public function aspekGuru()
+    {
+        $data['page']='aspekGuru';
+        $data['aspek'] = $this->Kuesioner_model->getAspek();
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/aspek', $data);
+        $this->load->view('templates/footer');
+
+    }
+
+    public function tbhAspek()
+    {
+        $this->form_validation->set_rules('aspek', 'Aspek', 'required');
+
+        if ($this->form_validation->run() == false) {
+            redirect('admin/aspekGuru');
+        } else {
+            $this->Kuesioner_model->addAspek();
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            redirect('admin/aspekGuru');
+        }
+    }
+
+    public function tbhPertanyaanAspek()
+    {
+        $id_asp = $this->input->post('id_aspek',TRUE);
+		$pertanyaan = $this->input->post('pertanyaan',TRUE);
+        $this->Kuesioner_model->AddPertanyaanAspek($id_asp,$pertanyaan);
+        $this->session->set_flashdata('flash', 'Ditambahkan');
+		redirect('admin/aspekGuru');
+    }
 //-------------------------------------------------- End Pertanyaan  
 
 //Admin

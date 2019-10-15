@@ -21,6 +21,7 @@
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
  
 </head>
 
@@ -56,13 +57,12 @@
                                 <li class="">
                                     <a href="#">
                                         <i class="metismenu-icon fa fa-briefcase"></i>
-                                        Kuesioner
+                                        Survei
                                         <i class="metismenu-state-icon fa fa-caret-down"></i>
                                     </a>
-                                    <ul <?php if($page =='tbhKuesionerGuru'||$page =='tbhKuesionerKegiatan'||$page =='dftKuesioner'):?>class="mm-show"<?php endif;?>>
-                                        <li><a <?php if($page =='tbhKuesionerGuru'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/tbhKuesionerGuru">Tambah Kuesioner Guru</a></li>
-                                        <li><a <?php if($page =='tbhKuesionerKegiatan'):?>class="mm-active"<?php endif;?>href="<?= base_url(); ?>admin/tbhKuesionerKegiatan">Tambah Kuesioner Kegiatan</a></li>
-                                        <li><a <?php if($page =='dftKuesioner'):?>class="mm-active"<?php endif;?>href="<?= base_url(); ?>admin/dftKuesioner">Daftar Kuesioner</a></li>  
+                                    <ul <?php if($page =='tbhKuesionerGuru'||$page =='tbhKuesionerKegiatan'):?>class="mm-show"<?php endif;?>>
+                                        <li><a <?php if($page =='tbhKuesionerGuru'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/KuesionerGuru">Tambah Survei Guru</a></li>
+                                        <li><a <?php if($page =='tbhKuesionerKegiatan'):?>class="mm-active"<?php endif;?>href="<?= base_url(); ?>admin/KuesionerKegiatan">Tambah Survei Kegiatan</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -83,10 +83,11 @@
                                         Pengaturan
                                         <i class="metismenu-state-icon fa fa-caret-down"></i>
                                     </a>
-                                    <ul <?php if($page =='kelas'||$page =='guru'||$page =='pertanyaan'):?>class="mm-show"<?php endif;?>>
+                                    <ul <?php if($page =='kelas'||$page =='guru'||$page =='pertanyaan'||$page =='aspekGuru'):?>class="mm-show"<?php endif;?>>
                                         <li><a <?php if($page =='kelas'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/kelas">Kelas</a></li>
                                         <li><a <?php if($page =='guru'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/guru">Guru</a></li>
                                         <li><a <?php if($page =='pertanyaan'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/pertanyaan">Pertanyaan</a></li>
+                                        <li><a <?php if($page =='aspekGuru'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/aspekGuru">Apek Penilaian Guru</a></li>
                                     </ul>
                                 </li>
                                 <li>

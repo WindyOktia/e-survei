@@ -15,6 +15,7 @@ $(document).ready(function () {
 		$('#row' + button_id + '').remove();
 	});
 
+	// ..................................................Custom below
 });
 
 ! function (t) {
