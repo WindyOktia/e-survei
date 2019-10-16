@@ -16,10 +16,12 @@ class Login extends CI_controller
 		if($validate->num_rows() > 0){
 			$data  = $validate->row_array();
 			$nipd  = $data['nipd'];
+			$kelas  = $data['id_kelas'];
 			$nama  = $data['nama'];
 			$role = $data['role'];
 			$sesdata = array(
 				'nama'  => $nama,
+				'id_kelas'  => $kelas,
 				'nipd'     => $nipd,
 				'role'    => $role,
 				'logged_in' => TRUE

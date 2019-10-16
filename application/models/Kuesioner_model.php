@@ -147,4 +147,16 @@ class Kuesioner_model extends CI_model
 			$this->db->delete('kuesioner_tmp', array('id_kuesioner' => $id));
 		$this->db->trans_complete();
     }
+
+//----------------------------------------------------------------------------------------- SISWA Down here
+    public function getSurveiKegiatan()
+    {
+        return $this->db->get_where('v_s_kegiatan', ['id_kelas'=> $this->session->userdata('id_kelas')])->result_array();
+    }
+
+    public function getSurveiGuru()
+    {
+        return $this->db->get_where('v_s_guru', ['id_kelas'=> $this->session->userdata('id_kelas')])->result_array();
+    }
+
 }
