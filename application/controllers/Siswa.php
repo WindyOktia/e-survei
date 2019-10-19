@@ -39,5 +39,15 @@ class Siswa extends CI_Controller
         $this->load->view('siswa/evaluasiKegiatan',$data);
         $this->load->view('templates/footer');
     }
+
+    public function formSurveiKegiatan($id)
+    {   
+        $data['page']='surveiKegiatan';
+        $data['detail']=$this->kuesioner_model->getDetailSurveiKegiatan($id);
+        $data['soal']=$this->kuesioner_model->getSoalKegiatan($id);
+        $this->load->view('templates/header_s',$data);
+        $this->load->view('siswa/formSurveiKegiatan',$data);
+        $this->load->view('templates/footer');
+    }
 //-----------------------------------------------------------------End of survey Kegiatan
 }

@@ -159,4 +159,15 @@ class Kuesioner_model extends CI_model
         return $this->db->get_where('v_s_guru', ['id_kelas'=> $this->session->userdata('id_kelas')])->result_array();
     }
 
+    public function getDetailSurveiKegiatan($id)
+    {
+        return $this->db->get_where('kuesioner', ['id_kuesioner'=>$id])->result_array();
+    }
+
+    public function getSoalKegiatan($id)
+    {
+        return $this->db->get_where('v_soal_kegiatan', ['id_kuesioner'=>$id,'id_kelas'=>$this->session->userdata('id_kelas')])->result_array();
+    }
+
+
 }

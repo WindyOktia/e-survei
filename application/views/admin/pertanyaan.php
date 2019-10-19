@@ -30,7 +30,7 @@
         <h5 class="card-title">Tambah Pertanyaan</h5>
         <form id="signupForm" class="mx-auto" action="<?php echo base_url(). 'admin/tbhPertanyaan'; ?>" method="post" novalidate="novalidate">
         <div>
-                <div class="form-group col-3 align-middle">
+                <div class="form-group col-6 align-middle">
                     <label for="username">Kategori</label>
                     <select name="id_kategori" class="multiselect-dropdown form-control">
                     <?php $i = 1; foreach ($kategori as $kat) : ?>
