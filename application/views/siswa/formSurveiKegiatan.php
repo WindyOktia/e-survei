@@ -1,4 +1,4 @@
-<div class="card mb-3 ">
+<div class="card mb-3 border-info">
     <div class="card-header-tab card-header">
         <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
             <i class="header-icon fa fa-info-circle"> </i>Detail Informasi
@@ -24,31 +24,30 @@
     </div>
     <div class="card-body">
     <!-- start soal -->
-        <?php $i = 1; $n = 1; foreach ($soal as $soal) : ?>
-            <fieldset id="'.<?= $n++?>.'">
-                <label for="soal"><?= $i++ ?>. <?= $soal['soal']; ?></label> 
+        <?php $i = 1; foreach ($soal as $soal) { ?>
+                <label for="soal"><?= $i ?>. <?= $soal['soal']; ?></label>
+                <input type="hidden" name="id_soal[]" value="<?= $soal['id_soal']; ?>"> 
                 <div class="position-relative form-group ml-3">
                     <div class="form-row ml-3">
                         <div class="custom-radio custom-control col-md-3">
-                            <input type="radio" id="exampleCustomRadio1" name="opsi" class="custom-control-input">
-                            <label class="custom-control-label" for="exampleCustomRadio1">Sangat Baik</label>
+                            <input type="radio" id="exampleCustomRadio1<?=$i?>" name="opsi[<?=$i?>]" value="1" class="custom-control-input">
+                            <label class="custom-control-label" for="exampleCustomRadio1<?=$i?>">Sangat Baik</label>
                         </div>
                         <div class="custom-radio custom-control col-md-3">
-                            <input type="radio" id="exampleCustomRadio2" name="opsi" class="custom-control-input">
-                            <label class="custom-control-label" for="exampleCustomRadio2">Baik</label>
+                            <input type="radio" id="exampleCustomRadio2<?=$i?>" name="opsi[<?=$i?>]" value="2" class="custom-control-input">
+                            <label class="custom-control-label" for="exampleCustomRadio2<?=$i?>">Baik</label>
                         </div>
                         <div class="custom-radio custom-control col-md-3">
-                            <input type="radio" id="exampleCustomRadio3" name="opsi" class="custom-control-input">
-                            <label class="custom-control-label" for="exampleCustomRadio3">Cukup</label>
+                            <input type="radio" id="exampleCustomRadio3<?=$i?>" name="opsi[<?=$i?>]" value="3" class="custom-control-input">
+                            <label class="custom-control-label" for="exampleCustomRadio3<?=$i?>">Cukup</label>
                         </div>
                         <div class="custom-radio custom-control col-md-3">
-                            <input type="radio" id="exampleCustomRadio4" name="opsi" class="custom-control-input">
-                            <label class="custom-control-label" for="exampleCustomRadio4">Kurang</label>
+                            <input type="radio" id="exampleCustomRadio4<?=$i?>" name="opsi[<?=$i?>]" value="4" class="custom-control-input">
+                            <label class="custom-control-label" for="exampleCustomRadio4<?=$i?>">Kurang</label>
                         </div>
                     </div>
-                </div>       
-            </fieldset>
-        <?php endforeach; ?>
+                </div>
+        <?php $i++;} ?>
     <!-- end soal -->
         <div class="form-group">
             <label class="mt-4" for="username">Saran / Masukan</label>

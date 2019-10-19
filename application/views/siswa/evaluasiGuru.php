@@ -11,9 +11,8 @@
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>No Dokumen Survei</th>
-                    <th>Tanggal Mulai</th>
-                    <th>Tanggal Selesai</th>
+                    <th>Nama Guru</th>
+                    <th>Batas Pengisian</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -21,10 +20,9 @@
                 <?php if(isset($sguru)){$i=1;foreach ($sguru as $sguru) : ?>
                     <tr>
                         <td class="align-middle"><?= $i++ ?></td>
-                        <td class="align-middle"><?= $sguru['id_survei_guru']; ?></td>
-                        <td class="align-middle"><?= $sguru['tgl_mulai']; ?></td>
+                        <td class="align-middle"><?= $sguru['nama']; ?></td>
                         <td class="align-middle"><?= $sguru['tgl_selesai']; ?></td>
-                        <td class="align-middle"><a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusAmpuan/">Isi Kuesioner</a></td>
+                        <td class="align-middle"><a class="btn btn-info btn-sm" role="button" href="<?= base_url(); ?>siswa/formSurveiGuru/<?= $sguru['id_survei_guru']; ?>/<?= $sguru['id_guru']; ?>">Isi Kuesioner</a></td>
                         </td>
                     </tr>
                 <?php endforeach; }?> 

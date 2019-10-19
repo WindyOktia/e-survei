@@ -22,7 +22,7 @@
                         <td class="align-middle"><?= $i++ ?></td>
                         <td class="align-middle"><?= $kuesioner['judul']; ?></td>
                         <td class="align-middle"><?= $kuesioner['tgl_selesai']; ?></td>
-                        <td class="align-middle"><a class="btn btn-danger btn-sm" role="button" href="<?= base_url(); ?>siswa/formSurveiKegiatan/<?= $kuesioner['id_kuesioner']; ?>">Isi Kuesioner</a></td>
+                        <td class="align-middle"><a class="btn btn-info btn-sm" role="button" href="<?= base_url(); ?>siswa/formSurveiKegiatan/<?= $kuesioner['id_kuesioner']; ?>">Isi Kuesioner</a></td>
                         </td>
                     </tr>
                 <?php endforeach; }?> 

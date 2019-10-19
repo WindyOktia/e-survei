@@ -169,5 +169,12 @@ class Kuesioner_model extends CI_model
         return $this->db->get_where('v_soal_kegiatan', ['id_kuesioner'=>$id,'id_kelas'=>$this->session->userdata('id_kelas')])->result_array();
     }
 
+    public function getThisGuru($idk,$idg)
+    {
+        return $this->db->get_where('v_s_guru', ['id_survei_guru'=>$idk,'id_guru'=>$idg,'id_kelas'=>$this->session->userdata('id_kelas')])->result_array();
+    }
+
+
+
 
 }

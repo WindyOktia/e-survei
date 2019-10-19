@@ -27,6 +27,15 @@ class Siswa extends CI_Controller
         $this->load->view('siswa/evaluasiGuru',$data);
         $this->load->view('templates/footer');
     }
+
+    public function formSurveiGuru($idk,$idg)
+    {   
+        $data['page']='surveiGuru';
+        $data['detail']=$this->kuesioner_model->getThisGuru($idk,$idg);
+        $this->load->view('templates/header_s',$data);
+        $this->load->view('siswa/formSurveiGuru',$data);
+        $this->load->view('templates/footer');
+    }
 //-----------------------------------------------------------------End of survey Guru
 
 // Survey Kegiatan
