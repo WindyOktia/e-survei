@@ -181,8 +181,7 @@ class Kuesioner_model extends CI_model
         $this->db->where('id_kuesioner',$id);
         $this->db->group_by('id_soal'); 
         $query = $this->db->get(); 
-        return $query->result_array();
-        // return $this->db->get_where('v_soal_kegiatan', ['id_kuesioner'=>$id])->result_array();
+        return $query->result_array();  
     }
 
     public function getThisGuru($idk,$idg)
@@ -219,6 +218,19 @@ class Kuesioner_model extends CI_model
     {
         return $this->db->get_where('aksi', ['id_kuesioner'=>$id,'nipd'=>$this->session->userdata('nipd')])->result_array();
     }
+
+ //Dashboard   
+
+    public function getJumlahKuesioner()
+    {
+        $this->db->select('count(id_kuesioner) as jumlah');
+        $this->db->from('kuesioner');
+        $query = $this->db->get(); 
+        return $query->result_array();  
+    }
+
+
+//-------------------------------------------------------------------------------------> End of Dashboard
 
 
 }

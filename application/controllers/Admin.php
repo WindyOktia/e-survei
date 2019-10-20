@@ -19,10 +19,7 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        $data['page']='surveiGuru';
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/surveiGuru');  
-        $this->load->view('templates/footer');  
+        redirect('admin/surveiGuru'); 
     }
 // Dashboard
     public function surveiGuru()
@@ -36,8 +33,9 @@ class Admin extends CI_Controller
     public function surveiKegiatan()
     {
         $data['page']='surveiKegiatan';
+        $data['jml'] = $this->Kuesioner_model->getJumlahKuesioner();
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/surveiKegiatan');
+        $this->load->view('admin/surveiKegiatan',$data);
         $this->load->view('templates/footer');  
     }
 
