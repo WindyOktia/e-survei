@@ -44,6 +44,7 @@ class Siswa extends CI_Controller
     {
         $data['page']='surveiKegiatan';
         $data['kuesioner']=$this->kuesioner_model->getSurveiKegiatan();
+        $data['cek']=$this->kuesioner_model->getAksi();
         $this->load->view('templates/header_s',$data);
         $this->load->view('siswa/evaluasiKegiatan',$data);
         $this->load->view('templates/footer');
@@ -51,6 +52,11 @@ class Siswa extends CI_Controller
 
     public function formSurveiKegiatan($id)
     {   
+        $uri_segments= "siswa/surveiKegiatan";
+        $uri = base_url().$uri_segments;
+        if($this->kuesioner_model->aksi($id)){
+            echo "<script>javascript:alert('Anda Sudah Mengisi Survei Ini '); window.location = '".$uri."'</script>";
+        }
         $data['page']='surveiKegiatan';
         $data['detail']=$this->kuesioner_model->getDetailSurveiKegiatan($id);
         $data['soal']=$this->kuesioner_model->getSoalKegiatan($id);
@@ -58,5 +64,17 @@ class Siswa extends CI_Controller
         $this->load->view('siswa/formSurveiKegiatan',$data);
         $this->load->view('templates/footer');
     }
+
+    public function aksi()
+    {
+        $nipd = $this->session->userdata('nipd');
+        $date = date('Y-m-d H:i:s');
+        $kuesioner = $this->input->post('id_kuesioner',TRUE);
+        $opsi = $this->input->post('opsi',TRUE);
+        $this->kuesioner_model->addAksi($nipd, $date, $kuesioner,$opsi);
+        $this->session->set_flashdata('flash', 'Ditambahkan');
+		redirect('siswa/surveiKegiatan');
+    }
 //-----------------------------------------------------------------End of survey Kegiatan
+
 }

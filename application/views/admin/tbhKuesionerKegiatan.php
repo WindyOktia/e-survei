@@ -99,7 +99,7 @@
                     <td class="align-middle"><?= $survei['judul']; ?></td>
                     <td class="align-middle"><?= $survei['tgl_mulai']; ?></td>
                     <td class="align-middle"><?= $survei['tgl_selesai']; ?></td>
-                    <td class="align-middle"><a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusKuesioner/<?= $survei['id_kuesioner']; ?>">Hapus</a></td>
+                    <td class="align-middle"><a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/preview_k/<?= $survei['id_kuesioner']; ?>">Lihat Kuesioner</a><a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusKuesioner/<?= $survei['id_kuesioner']; ?>">Hapus</a></td>
                 </tr>
                 <?php endforeach; ?>
             </table>

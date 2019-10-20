@@ -8,6 +8,11 @@ class Kuesioner_model extends CI_model
         return $this->db->get('kategori')->result_array();
     }
 
+    public function getAksi()
+    {
+        return $this->db->get('aksi')->result_array();
+    }
+
     public function getAspek()
     {
         return $this->db->get('aspek')->result_array();
@@ -169,12 +174,51 @@ class Kuesioner_model extends CI_model
         return $this->db->get_where('v_soal_kegiatan', ['id_kuesioner'=>$id,'id_kelas'=>$this->session->userdata('id_kelas')])->result_array();
     }
 
+    public function getSoalKegiatan_Admin($id)
+    {
+        $this->db->select('*');
+        $this->db->from('v_soal_kegiatan');
+        $this->db->where('id_kuesioner',$id);
+        $this->db->group_by('id_soal'); 
+        $query = $this->db->get(); 
+        return $query->result_array();
+        // return $this->db->get_where('v_soal_kegiatan', ['id_kuesioner'=>$id])->result_array();
+    }
+
     public function getThisGuru($idk,$idg)
     {
         return $this->db->get_where('v_s_guru', ['id_survei_guru'=>$idk,'id_guru'=>$idg,'id_kelas'=>$this->session->userdata('id_kelas')])->result_array();
     }
 
+    public function addAksi($nipd, $date, $kuesioner, $opsi)
+    {
+        $this->db->trans_start();
+			//INSERT TO PACKAGE
+			$data = [
+                "nipd" => $nipd,
+                "tgl_isi" => $date,
+                "id_kuesioner" => $kuesioner
+            ];
+    
+            $this->db->insert('aksi', $data);
+			//GET ID PACKAGE
+			$package_id = $this->db->insert_id();
+			$result = array();
+			    foreach($opsi AS $key => $val){
+				     $result[] = array(
+				      'id_aksi'  	=> $package_id,
+				      'id_opsi'  	=> $_POST['opsi'][$key]
+				     );
+			    }      
+			//MULTIPLE INSERT TO DETAIL TABLE
+			$this->db->insert_batch('aksi_tmp', $result);
+		$this->db->trans_complete();
+    }
 
+    public function aksi($id)
+    {
+        return $this->db->get_where('aksi', ['id_kuesioner'=>$id,'nipd'=>$this->session->userdata('nipd')])->result_array();
+    }
 
 
 }

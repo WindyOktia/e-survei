@@ -100,6 +100,17 @@ class Admin extends CI_Controller
 		redirect('admin/KuesionerKegiatan');
     }
 
+    public function preview_k($id)
+    {
+        $data['page']='tbhKuesionerKegiatan';
+        $data['detail']=$this->Kuesioner_model->getDetailSurveiKegiatan($id);
+        $data['soal']=$this->Kuesioner_model->getSoalKegiatan_Admin($id);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/preview_k', $data);
+        $this->load->view('templates/footer');  
+    }
+
     public function hapusKuesioner($id)
     {
         $this->Kuesioner_model->deleteKuesioner($id);
@@ -107,7 +118,7 @@ class Admin extends CI_Controller
         redirect('admin/KuesionerKegiatan');
     }
 //-------------------------------------------------- End Kuesioner Kegiatan
-
+    
 
 // Siswa
 

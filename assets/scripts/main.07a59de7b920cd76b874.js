@@ -16,7 +16,9 @@ $(document).ready(function () {
 	});
 
 	// ..................................................Custom below
+
 });
+
 
 ! function (t) {
 	var e = {};
