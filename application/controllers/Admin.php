@@ -30,6 +30,14 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');  
     }
 
+    public function detailSurveiGuru()
+    {
+        $data['page']='surveiGuru';
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/detail/surveiGuru');  
+        $this->load->view('templates/footer'); 
+    }
+
     public function surveiKegiatan()
     {
         $data['page']='surveiKegiatan';
@@ -37,6 +45,14 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('admin/surveiKegiatan',$data);
         $this->load->view('templates/footer');  
+    }
+
+    public function detailSurveiKegiatan()
+    {
+        $data['page']='surveiKegiatan';
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/detail/surveiKegiatan',$data);
+        $this->load->view('templates/footer'); 
     }
 
 //---------------------------------------------------End Dashboard

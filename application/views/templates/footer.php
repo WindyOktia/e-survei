@@ -637,6 +637,7 @@
     <script src="<?= base_url(); ?>assets/scripts/sweetalert2.all.min.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="<?= base_url(); ?>assets/scripts/select.js"></script>
+    <script src="<?= base_url(); ?>assets/scripts/chart.js"></script>
     <script type="text/javascript" src="<?= base_url(); ?>assets/scripts/main.07a59de7b920cd76b874.js"></script>
 </body>
 

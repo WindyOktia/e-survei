@@ -84,7 +84,7 @@
                 <td>213</td>
                 <td>2</td>
                 <td>
-                <a class="btn btn-info btn-sm tombol-hapus mr-2" role="button" href="<?= base_url(); ?>admin/hapusKelas/">Detail Survei</a>
+                <a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/detailSurveiKegiatan/">Hasil Survei</a>
                 </td>
             </tr>
             <tr>
@@ -93,7 +93,7 @@
                 <td>210</td>
                 <td>9</td>
                 <td>
-                <a class="btn btn-info btn-sm tombol-hapus mr-2" role="button" href="<?= base_url(); ?>admin/hapusKelas/">Detail Survei</a>
+                <a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/detailSurveiKegiatan/">Hasil Survei</a>
                 </td>
             </tr>
             
