@@ -206,6 +206,7 @@ class Kuesioner_model extends CI_model
 			    foreach($opsi AS $key => $val){
 				     $result[] = array(
 				      'id_aksi'  	=> $package_id,
+				      'soal_no'  	=> $key,
 				      'id_opsi'  	=> $_POST['opsi'][$key]
 				     );
 			    }      

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Okt 2019 pada 10.52
+-- Waktu pembuatan: 21 Okt 2019 pada 13.07
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -31,9 +31,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `aksi` (
   `id_aksi` int(11) NOT NULL,
   `nipd` varchar(30) NOT NULL,
-  `tgl_isi` date NOT NULL,
+  `tgl_isi` datetime NOT NULL,
   `id_kuesioner` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `aksi`
+--
+
+INSERT INTO `aksi` (`id_aksi`, `nipd`, `tgl_isi`, `id_kuesioner`) VALUES
+(33, '222', '2019-10-21 12:28:52', 12),
+(34, '666', '2019-10-21 12:30:33', 12);
 
 -- --------------------------------------------------------
 
@@ -44,9 +52,55 @@ CREATE TABLE `aksi` (
 CREATE TABLE `aksi_tmp` (
   `id_aksi_tmp` int(11) NOT NULL,
   `id_aksi` int(11) NOT NULL,
-  `id_soal` int(11) NOT NULL,
+  `soal_no` int(11) NOT NULL,
   `id_opsi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `aksi_tmp`
+--
+
+INSERT INTO `aksi_tmp` (`id_aksi_tmp`, `id_aksi`, `soal_no`, `id_opsi`) VALUES
+(185, 33, 1, 3),
+(186, 33, 2, 2),
+(187, 33, 3, 3),
+(188, 33, 4, 3),
+(189, 33, 5, 2),
+(190, 33, 6, 3),
+(191, 33, 7, 4),
+(192, 33, 8, 3),
+(193, 33, 9, 2),
+(194, 33, 10, 3),
+(195, 33, 11, 2),
+(196, 33, 12, 3),
+(197, 33, 13, 3),
+(198, 33, 14, 2),
+(199, 33, 15, 4),
+(200, 33, 16, 3),
+(201, 33, 17, 2),
+(202, 33, 18, 3),
+(203, 33, 19, 4),
+(204, 33, 20, 3),
+(205, 34, 1, 2),
+(206, 34, 2, 3),
+(207, 34, 3, 3),
+(208, 34, 4, 4),
+(209, 34, 5, 2),
+(210, 34, 6, 3),
+(211, 34, 7, 2),
+(212, 34, 8, 4),
+(213, 34, 9, 3),
+(214, 34, 10, 2),
+(215, 34, 11, 3),
+(216, 34, 12, 3),
+(217, 34, 13, 4),
+(218, 34, 14, 2),
+(219, 34, 15, 3),
+(220, 34, 16, 4),
+(221, 34, 17, 4),
+(222, 34, 18, 3),
+(223, 34, 19, 2),
+(224, 34, 20, 2);
 
 -- --------------------------------------------------------
 
@@ -67,7 +121,15 @@ CREATE TABLE `ampuan` (
 INSERT INTO `ampuan` (`id_ampuan`, `id_guru`, `id_kelas`) VALUES
 (88, 49, 37),
 (89, 49, 43),
-(90, 50, 46);
+(90, 50, 46),
+(91, 51, 37),
+(92, 51, 38),
+(93, 51, 43),
+(94, 51, 45),
+(95, 51, 46),
+(96, 52, 37),
+(97, 52, 38),
+(98, 52, 45);
 
 -- --------------------------------------------------------
 
@@ -104,7 +166,9 @@ CREATE TABLE `guru` (
 
 INSERT INTO `guru` (`id_guru`, `nama`) VALUES
 (49, 'Pioneer'),
-(50, 'joko');
+(50, 'joko'),
+(51, 'Rani'),
+(52, 'Donny');
 
 -- --------------------------------------------------------
 
@@ -122,7 +186,8 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `kategori`) VALUES
-(29, 'Pengenalan Lingkungan Sekolah ');
+(29, 'Pengenalan Lingkungan Sekolah '),
+(30, 'test');
 
 -- --------------------------------------------------------
 
@@ -168,7 +233,8 @@ CREATE TABLE `kuesioner` (
 --
 
 INSERT INTO `kuesioner` (`id_kuesioner`, `judul`, `deskripsi`, `tgl_mulai`, `tgl_selesai`, `id_kategori`) VALUES
-(12, 'Survei Pelaksanaan Pengenalan Lingkungan Sekolah (PLS)', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2019-10-19', '2019-10-20', 29);
+(12, 'Survei Pelaksanaan Pengenalan Lingkungan Sekolah (PLS)', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2019-10-19', '2019-10-20', 29),
+(14, 'Test 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2019-10-19', '2019-10-21', 30);
 
 -- --------------------------------------------------------
 
@@ -191,7 +257,11 @@ INSERT INTO `kuesioner_tmp` (`id_kuesioner_tmp`, `id_kuesioner`, `id_kelas`) VAL
 (24, 12, 38),
 (25, 12, 43),
 (26, 12, 45),
-(27, 12, 46);
+(27, 12, 46),
+(33, 14, 37),
+(34, 14, 43),
+(35, 14, 45),
+(36, 14, 46);
 
 -- --------------------------------------------------------
 
@@ -272,7 +342,10 @@ INSERT INTO `soal` (`id_soal`, `soal`, `id_kategori`) VALUES
 (50, 'Pelayanan Bapak / Ibu guru pendamping gugus selama kegiatan outbond', 29),
 (51, 'Keamanan Selama Kegiatan Outbond', 29),
 (52, 'Alat transportasi selama kegiatan outbond', 29),
-(53, 'Games / Permainan yang dilakukan selama kegiatan outbond', 29);
+(53, 'Games / Permainan yang dilakukan selama kegiatan outbond', 29),
+(54, 'test 1', 30),
+(55, 'test 2', 30),
+(56, 'test 3', 30);
 
 -- --------------------------------------------------------
 
@@ -311,7 +384,7 @@ CREATE TABLE `survei_guru` (
 --
 
 INSERT INTO `survei_guru` (`id_survei_guru`, `tgl_mulai`, `tgl_selesai`) VALUES
-(9, '2019-10-17', '2019-10-18');
+(11, '2019-10-19', '2019-10-20');
 
 -- --------------------------------------------------------
 
@@ -330,7 +403,10 @@ CREATE TABLE `survei_guru_tmp` (
 --
 
 INSERT INTO `survei_guru_tmp` (`id_survei_guru_tmp`, `id_survei_guru`, `id_guru`) VALUES
-(13, 9, 49);
+(17, 11, 49),
+(18, 11, 50),
+(19, 11, 51),
+(20, 11, 52);
 
 -- --------------------------------------------------------
 
@@ -356,7 +432,8 @@ INSERT INTO `user_siswa` (`id`, `nama`, `nipd`, `nama_ibu`, `id_kelas`, `passwor
 (20, 'System Default', '1', 'default', 0, '1b1f3c1005c23645b582d2ff993f0d14', 1),
 (22, 'Karsa', '12', 'ciki', 38, 'c3ec0f7b054e729c5a716c8125839829', 2),
 (28, 'joko', '666', 'admin', 0, 'b2d70ecfea01ba7d1148f1dc5f593710', 1),
-(30, 'Aku', '222', 'tino', 43, 'c3ec0f7b054e729c5a716c8125839829', 2);
+(30, 'Aku', '222', 'tino', 43, 'c3ec0f7b054e729c5a716c8125839829', 2),
+(31, 'Daniel Setiawan', '666', 'mother', 38, 'c3ec0f7b054e729c5a716c8125839829', 2);
 
 -- --------------------------------------------------------
 
@@ -377,6 +454,7 @@ CREATE TABLE `v_ampuan` (
 --
 CREATE TABLE `v_soal_kegiatan` (
 `id_kuesioner` int(11)
+,`id_soal` int(11)
 ,`soal` text
 ,`id_kelas` int(11)
 );
@@ -392,6 +470,7 @@ CREATE TABLE `v_s_guru` (
 ,`tgl_mulai` date
 ,`tgl_selesai` date
 ,`id_guru` int(11)
+,`nama` varchar(50)
 ,`id_kelas` int(11)
 );
 
@@ -427,7 +506,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_soal_kegiatan`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_soal_kegiatan`  AS  select `kuesioner`.`id_kuesioner` AS `id_kuesioner`,`soal`.`soal` AS `soal`,`kuesioner_tmp`.`id_kelas` AS `id_kelas` from ((`kuesioner` join `soal`) join `kuesioner_tmp`) where `kuesioner`.`id_kategori` = `soal`.`id_kategori` and `kuesioner_tmp`.`id_kuesioner` = `kuesioner`.`id_kuesioner` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_soal_kegiatan`  AS  select `kuesioner`.`id_kuesioner` AS `id_kuesioner`,`soal`.`id_soal` AS `id_soal`,`soal`.`soal` AS `soal`,`kuesioner_tmp`.`id_kelas` AS `id_kelas` from ((`kuesioner` join `soal`) join `kuesioner_tmp`) where `kuesioner`.`id_kategori` = `soal`.`id_kategori` and `kuesioner_tmp`.`id_kuesioner` = `kuesioner`.`id_kuesioner` ;
 
 -- --------------------------------------------------------
 
@@ -436,7 +515,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_s_guru`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_s_guru`  AS  select `survei_guru`.`id_survei_guru` AS `id_survei_guru`,`survei_guru`.`tgl_mulai` AS `tgl_mulai`,`survei_guru`.`tgl_selesai` AS `tgl_selesai`,`survei_guru_tmp`.`id_guru` AS `id_guru`,`ampuan`.`id_kelas` AS `id_kelas` from ((`survei_guru` join `survei_guru_tmp`) join `ampuan`) where `survei_guru`.`id_survei_guru` = `survei_guru_tmp`.`id_survei_guru` and `survei_guru_tmp`.`id_guru` = `ampuan`.`id_guru` group by `ampuan`.`id_kelas` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_s_guru`  AS  select `survei_guru`.`id_survei_guru` AS `id_survei_guru`,`survei_guru`.`tgl_mulai` AS `tgl_mulai`,`survei_guru`.`tgl_selesai` AS `tgl_selesai`,`guru`.`id_guru` AS `id_guru`,`guru`.`nama` AS `nama`,`ampuan`.`id_kelas` AS `id_kelas` from (((`survei_guru` join `survei_guru_tmp`) join `ampuan`) join `guru`) where `survei_guru`.`id_survei_guru` = `survei_guru_tmp`.`id_survei_guru` and `survei_guru_tmp`.`id_guru` = `guru`.`id_guru` and `ampuan`.`id_guru` = `guru`.`id_guru` ;
 
 -- --------------------------------------------------------
 
@@ -555,19 +634,19 @@ ALTER TABLE `user_siswa`
 -- AUTO_INCREMENT untuk tabel `aksi`
 --
 ALTER TABLE `aksi`
-  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT untuk tabel `aksi_tmp`
 --
 ALTER TABLE `aksi_tmp`
-  MODIFY `id_aksi_tmp` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_aksi_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
 
 --
 -- AUTO_INCREMENT untuk tabel `ampuan`
 --
 ALTER TABLE `ampuan`
-  MODIFY `id_ampuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id_ampuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT untuk tabel `aspek`
@@ -579,13 +658,13 @@ ALTER TABLE `aspek`
 -- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas`
@@ -597,25 +676,25 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `kuesioner`
 --
 ALTER TABLE `kuesioner`
-  MODIFY `id_kuesioner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_kuesioner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `kuesioner_tmp`
 --
 ALTER TABLE `kuesioner_tmp`
-  MODIFY `id_kuesioner_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_kuesioner_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa_tmp`
 --
 ALTER TABLE `siswa_tmp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT untuk tabel `soal_aspek`
@@ -627,19 +706,19 @@ ALTER TABLE `soal_aspek`
 -- AUTO_INCREMENT untuk tabel `survei_guru`
 --
 ALTER TABLE `survei_guru`
-  MODIFY `id_survei_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_survei_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `survei_guru_tmp`
 --
 ALTER TABLE `survei_guru_tmp`
-  MODIFY `id_survei_guru_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_survei_guru_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_siswa`
 --
 ALTER TABLE `user_siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
