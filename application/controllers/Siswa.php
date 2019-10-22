@@ -30,11 +30,29 @@ class Siswa extends CI_Controller
 
     public function formSurveiGuru($idk,$idg)
     {   
+        $uri_segments= "siswa/surveiGuru";
+        $uri = base_url().$uri_segments;
+        if($this->kuesioner_model->aksiGuru($idg)){
+            echo "<script>javascript:alert('Anda Sudah Mengisi Survei Ini '); window.location = '".$uri."'</script>";
+        }
         $data['page']='surveiGuru';
         $data['detail']=$this->kuesioner_model->getThisGuru($idk,$idg);
+        $data['soal']=$this->kuesioner_model->getAspekSoal();
         $this->load->view('templates/header_s',$data);
         $this->load->view('siswa/formSurveiGuru',$data);
         $this->load->view('templates/footer');
+    }
+
+    public function aksiGuru()
+    {
+        $nipd = $this->session->userdata('nipd');
+        $date = date('Y-m-d H:i:s');
+        $kuesioner = $this->input->post('id_survei',TRUE);
+        $guru = $this->input->post('guru',TRUE);
+        $opsi = $this->input->post('opsi',TRUE);
+        $this->kuesioner_model->addAksiGuru($nipd, $date, $kuesioner,$opsi,$guru);
+        $this->session->set_flashdata('flash', 'Ditambahkan');
+		redirect('siswa/surveiGuru');
     }
 //-----------------------------------------------------------------End of survey Guru
 
@@ -44,7 +62,7 @@ class Siswa extends CI_Controller
     {
         $data['page']='surveiKegiatan';
         $data['kuesioner']=$this->kuesioner_model->getSurveiKegiatan();
-        $data['cek']=$this->kuesioner_model->getAksi();
+        // $data['cek']=$this->kuesioner_model->getAksi();
         $this->load->view('templates/header_s',$data);
         $this->load->view('siswa/evaluasiKegiatan',$data);
         $this->load->view('templates/footer');

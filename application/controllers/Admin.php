@@ -352,6 +352,13 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('flash', 'Ditambahkan');
 		redirect('admin/aspekGuru');
     }
+
+    public function hapusAspek($id)
+    {
+        $this->Kuesioner_model->deleteAspek($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('admin/aspekGuru');
+    }
 //-------------------------------------------------- End Pertanyaan  
 
 //Admin

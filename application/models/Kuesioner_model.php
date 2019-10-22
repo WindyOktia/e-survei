@@ -18,6 +18,11 @@ class Kuesioner_model extends CI_model
         return $this->db->get('aspek')->result_array();
     }
 
+    public function getAspekSoal()
+    {
+        return $this->db->get('soal_aspek')->result_array();
+    }
+
     public function getAllSurveiGuru()
     {
         return $this->db->get('survei_guru')->result_array();
@@ -51,6 +56,14 @@ class Kuesioner_model extends CI_model
         $this->db->trans_start();
 			$this->db->delete('soal', array('id_kategori' => $id));
 			$this->db->delete('kategori', array('id_kategori' => $id));
+		$this->db->trans_complete();
+    }
+
+    public function deleteAspek($id)
+    {
+        $this->db->trans_start();
+			$this->db->delete('aspek', array('id_aspek' => $id));
+			$this->db->delete('soal_aspek', array('id_aspek' => $id));
 		$this->db->trans_complete();
     }
 
@@ -215,9 +228,41 @@ class Kuesioner_model extends CI_model
 		$this->db->trans_complete();
     }
 
+    public function addAksiGuru($nipd, $date, $kuesioner, $opsi,$guru)
+    {
+        $this->db->trans_start();
+			//INSERT TO PACKAGE
+			$data = [
+                "nipd" => $nipd,
+                "tgl_isi" => $date,
+                "id_survei_guru" => $kuesioner,
+                "id_guru" => $guru
+            ];
+    
+            $this->db->insert('aksi_guru', $data);
+			//GET ID PACKAGE
+			$package_id = $this->db->insert_id();
+			$result = array();
+			    foreach($opsi AS $key => $val){
+				     $result[] = array(
+				      'id_aksi_guru'  	=> $package_id,
+				      'soal_no'  	=> $key,
+				      'id_opsi'  	=> $_POST['opsi'][$key]
+				     );
+			    }      
+			//MULTIPLE INSERT TO DETAIL TABLE
+			$this->db->insert_batch('aksi_guru_tmp', $result);
+		$this->db->trans_complete();
+    }
+
     public function aksi($id)
     {
         return $this->db->get_where('aksi', ['id_kuesioner'=>$id,'nipd'=>$this->session->userdata('nipd')])->result_array();
+    }
+
+    public function aksiGuru($idg)
+    {
+        return $this->db->get_where('aksi_guru', ['id_guru'=>$idg,'nipd'=>$this->session->userdata('nipd')])->result_array();
     }
 
  //Dashboard   
