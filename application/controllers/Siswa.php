@@ -37,7 +37,7 @@ class Siswa extends CI_Controller
         }
         $data['page']='surveiGuru';
         $data['detail']=$this->kuesioner_model->getThisGuru($idk,$idg);
-        $data['soal']=$this->kuesioner_model->getAspekSoal();
+        $data['soal']=$this->kuesioner_model->getSoalGuru();
         $this->load->view('templates/header_s',$data);
         $this->load->view('siswa/formSurveiGuru',$data);
         $this->load->view('templates/footer');
@@ -62,7 +62,7 @@ class Siswa extends CI_Controller
     {
         $data['page']='surveiKegiatan';
         $data['kuesioner']=$this->kuesioner_model->getSurveiKegiatan();
-        // $data['cek']=$this->kuesioner_model->getAksi();
+        $data['cek']=$this->kuesioner_model->getAksi();
         $this->load->view('templates/header_s',$data);
         $this->load->view('siswa/evaluasiKegiatan',$data);
         $this->load->view('templates/footer');
@@ -75,6 +75,7 @@ class Siswa extends CI_Controller
         if($this->kuesioner_model->aksi($id)){
             echo "<script>javascript:alert('Anda Sudah Mengisi Survei Ini '); window.location = '".$uri."'</script>";
         }
+        
         $data['page']='surveiKegiatan';
         $data['detail']=$this->kuesioner_model->getDetailSurveiKegiatan($id);
         $data['soal']=$this->kuesioner_model->getSoalKegiatan($id);
@@ -93,6 +94,21 @@ class Siswa extends CI_Controller
         $this->session->set_flashdata('flash', 'Ditambahkan');
 		redirect('siswa/surveiKegiatan');
     }
+//-----------------------------------------------------------------End of survey Kegiatan
+
+//Survei Kepuasan
+    public function surveiKepuasan()
+    {
+        $data['page']='kepuasan';
+        $this->load->view('templates/header_s',$data);
+        $this->load->view('siswa/surveiKepuasan',$data);
+        $this->load->view('templates/footer');
+    }
+
+
+
+
+
 //-----------------------------------------------------------------End of survey Kegiatan
 
 }

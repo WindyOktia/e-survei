@@ -37,7 +37,10 @@
                         <td class="align-middle"><?= $i++ ?></td>
                         <td class="align-middle"><?= $sguru['nama']; ?></td>
                         <td class="align-middle"><?= $sguru['tgl_selesai']; ?></td>
-                        <td class="align-middle"><a class="btn btn-info btn-sm" role="button" href="<?= base_url(); ?>siswa/formSurveiGuru/<?= $sguru['id_survei_guru']; ?>/<?= $sguru['id_guru']; ?>">Isi Kuesioner</a></td>
+                        <td class="align-middle">
+                        <a class="btn btn-info btn-sm" role="button" href="<?= base_url(); ?>siswa/formSurveiGuru/<?= $sguru['id_survei_guru']; ?>/<?= $sguru['id_guru']; ?>">Isi Kuesioner</a>
+                       
+                        </td>
                         </td>
                     </tr>
                 <?php endforeach; }?> 

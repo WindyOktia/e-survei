@@ -49,9 +49,10 @@
                                         Dashboards
                                         <i class="metismenu-state-icon fa fa-caret-down"></i>
                                     </a>
-                                    <ul <?php if($page =='surveiGuru'||$page =='surveiKegiatan'):?>class="mm-show"<?php endif;?>>
+                                    <ul <?php if($page =='surveiGuru'||$page =='surveiKegiatan'||$page =='kepuasan'):?>class="mm-show"<?php endif;?>>
                                         <li><a <?php if($page =='surveiGuru'):?>class="mm-active"<?php endif;?>href="<?= base_url(); ?>siswa/surveiGuru">Survei Guru</a></li>
                                         <li><a <?php if($page =='surveiKegiatan'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>siswa/surveiKegiatan">Survei Kegiatan</a></li>
+                                        <li><a <?php if($page =='kepuasan'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>siswa/surveiKepuasan">Survei Kepuasan</a></li>
                                     </ul>
                                 </li>
                                 

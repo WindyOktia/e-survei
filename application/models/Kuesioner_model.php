@@ -8,20 +8,26 @@ class Kuesioner_model extends CI_model
         return $this->db->get('kategori')->result_array();
     }
 
+    public function getAspekKepuasan()
+    {
+        return $this->db->get('aspek_kepuasan')->result_array();
+    }
+
     public function getAksi()
     {
         return $this->db->get('aksi')->result_array();
     }
 
-    public function getAspek()
+    public function getSoalGuru()
     {
-        return $this->db->get('aspek')->result_array();
+        return $this->db->get('soal_guru')->result_array();
     }
 
-    public function getAspekSoal()
+    public function getSoalKepuasan()
     {
-        return $this->db->get('soal_aspek')->result_array();
+        return $this->db->get('v_s_kepuasan')->result_array();
     }
+
 
     public function getAllSurveiGuru()
     {
@@ -41,14 +47,13 @@ class Kuesioner_model extends CI_model
 
         $this->db->insert('kategori', $data);
     }
-
-    public function addAspek()
+    public function addAspekKepuasan()
     {
         $data = [
             "aspek" => $this->input->post('aspek', true)
         ];
 
-        $this->db->insert('aspek', $data);
+        $this->db->insert('aspek_kepuasan', $data);
     }
 
     public function deleteKategori($id)
@@ -83,20 +88,38 @@ class Kuesioner_model extends CI_model
     $this->db->trans_complete();
     }
 
-    public function addPertanyaanAspek($id_asp,$pertanyaan)
+    public function addPertanyaanGuru($pertanyaan)
     {
         $this->db->trans_start();
         
         $result = array();
             foreach($pertanyaan AS $key => $val){
                  $result[] = array(
-                  'id_aspek'  	=> $id_asp,
                   'pertanyaan'  	=> $_POST['pertanyaan'][$key]
                  );
             }      
         //MULTIPLE INSERT TO DETAIL TABLE
-        $this->db->insert_batch('soal_aspek', $result);
+        $this->db->insert_batch('soal_guru', $result);
     $this->db->trans_complete();
+    }
+
+    public function addPertanyaanKepuasan($pertanyaan, $opsi1, $opsi2, $opsi3, $opsi4)
+    {
+        $this->db->trans_start();
+			$result = array();
+			    foreach($pertanyaan AS $key => $val){
+				     $result[] = array(
+				      'pertanyaan'  	=> $_POST['pertanyaan'][$key],
+				      'id_aspek_kepuasan'  	=> $_POST['aspek'],
+				      'opsi_1'  	=> $_POST['opsi_1'],
+				      'opsi_2'  	=> $_POST['opsi_2'],
+				      'opsi_3'  	=> $_POST['opsi_3'],
+				      'opsi_4'  	=> $_POST['opsi_4']
+				     );
+			    }      
+			//MULTIPLE INSERT TO DETAIL TABLE
+			$this->db->insert_batch('soal_kepuasan', $result);
+		$this->db->trans_complete();
     }
 
     public function addKuesioner($judul,$deskripsi,$kategori,$kelas,$mulai,$selesai)
@@ -147,6 +170,30 @@ class Kuesioner_model extends CI_model
 			    }      
 			//MULTIPLE INSERT TO DETAIL TABLE
 			$this->db->insert_batch('survei_guru_tmp', $result);
+		$this->db->trans_complete();
+    }
+
+    public function addKuesionerKepuasan($kelas,$mulai,$selesai)
+    {
+       $this->db->trans_start();
+			//INSERT TO PACKAGE
+			$data = [
+                'tgl_mulai' => date_format(date_create($mulai), 'Y-m-d'),
+                'tgl_selesai' => date_format(date_create($selesai), 'Y-m-d')
+            ];
+    
+            $this->db->insert('survei_kepuasan', $data);
+			//GET ID PACKAGE
+			$package_id = $this->db->insert_id();
+			$result = array();
+			    foreach($kelas AS $key => $val){
+				     $result[] = array(
+				      'id_survei_kepuasan'  	=> $package_id,
+				      'id_kelas'  	=> $_POST['kelas'][$key]
+				     );
+			    }      
+			//MULTIPLE INSERT TO DETAIL TABLE
+			$this->db->insert_batch('survei_kepuasan_tmp', $result);
 		$this->db->trans_complete();
     }
 

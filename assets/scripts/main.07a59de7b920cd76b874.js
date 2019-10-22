@@ -2,7 +2,13 @@ $(document).ready(function () {
 	var i = 1;
 	$('#add').click(function () {
 		i++;
-		$('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="pertanyaan[]" placeholder="Masukkan Pertanyaan" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+		$('#dynamic_field').append('<tr id="row' + i + '" class="mt-2"><td>'+ i +'. </td><td><input type="text" name="pertanyaan[]" placeholder="Masukkan Pertanyaan" class="form-control name_list" required/><div class="row mt-2"><div class="col-3"><input type="text" name="opsi_1" placeholder="Opsi" class="form-control name_list" required/></div><div class="col-3"><input type="text" name="opsi_2" placeholder="Opsi" class="form-control name_list" required/></div><div class="col-3"><input type="text" name="opsi_3" placeholder="Opsi" class="form-control name_list" required/></div><div class="col-3"><input type="text" name="opsi_4" placeholder="Opsi" class="form-control name_list" required/></div></div></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+	});
+
+
+	$('#addPertanyaanGuru').click(function () {
+		i++;
+		$('#dynamicPertanyaanGuru').append('<tr id="row' + i + '"><td><input type="text" name="pertanyaan[]" placeholder="Masukkan Pertanyaan" class="form-control name_list" required/></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
 	});
 
 	$('#addSiswa').click(function () {

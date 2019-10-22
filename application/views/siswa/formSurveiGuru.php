@@ -55,7 +55,7 @@
         <div class="form-group">
             <label class="mt-4" for="username">Saran / Masukan</label>
             <div>
-                <textarea id="exampleText" class="form-control" name="saran" placeholder="" required></textarea>
+                <textarea id="exampleText" class="form-control" name="saran" placeholder="" ></textarea>
             </div>
         </div>
 
