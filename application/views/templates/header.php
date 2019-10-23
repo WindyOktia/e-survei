@@ -21,7 +21,11 @@
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
  
 </head>
@@ -64,7 +68,7 @@
                                     <ul <?php if($page =='tbhKuesionerGuru'||$page =='tbhKuesionerKegiatan'||$page =='tbhKuesionerKepuasan'):?>class="mm-show"<?php endif;?>>
                                         <li><a <?php if($page =='tbhKuesionerGuru'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/KuesionerGuru">Tambah Survei Guru</a></li>
                                         <li><a <?php if($page =='tbhKuesionerKegiatan'):?>class="mm-active"<?php endif;?>href="<?= base_url(); ?>admin/KuesionerKegiatan">Tambah Survei Kegiatan</a></li>
-                                        <li><a <?php if($page =='tbhKuesionerKepuasan'):?>class="mm-active"<?php endif;?>href="<?= base_url(); ?>admin/KuesionerKepuasan">Tambah Survei Kepuasan</a></li>
+                                        <!-- <li><a <?php if($page =='tbhKuesionerKepuasan'):?>class="mm-active"<?php endif;?>href="<?= base_url(); ?>admin/KuesionerKepuasan">Tambah Survei Kepuasan</a></li> -->
                                     </ul>
                                 </li>
                                 <li>
@@ -90,7 +94,7 @@
                                         <li><a <?php if($page =='guru'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/guru">Guru</a></li>
                                         <li><a <?php if($page =='pertanyaan'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/pertanyaan">Survei Kegiatan</a></li>
                                         <li><a <?php if($page =='aspekGuru'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/aspekGuru">Survei Guru </a></li>
-                                        <li><a <?php if($page =='kepuasan'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/kepuasan">Survei Kepuasan </a></li>
+                                        <!-- <li><a <?php if($page =='kepuasan'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/kepuasan">Survei Kepuasan </a></li> -->
                                     </ul>
                                 </li>
                                 <li>
@@ -165,4 +169,5 @@
                         <div class="app-inner-layout__wrapper">
                             <div class="app-inner-layout__content">
                                     <div class="container-fluid">
+                                    
                                        

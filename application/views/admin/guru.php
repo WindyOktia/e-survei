@@ -12,8 +12,6 @@
     </div> -->
     <?php endif; ?>
 
-
-
 <div class="main-card card mb-3">
     <div class="card-body border border-warning">
         <h5 class="card-title">Tambah Data Guru</h5>
@@ -61,12 +59,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php if(isset($guru)){$i=1;foreach ($guru as $dft) : ?>
+                <?php if(isset($ampuan)){$i=1;foreach ($ampuan as $dft) : ?>
                     <tr>
                         <td class="align-middle"><?= $i++ ?></td>
                         <td class="align-middle"><?= $dft['nama']; ?></td>
-                        <td class="align-middle"><a class="btn btn-info btn-sm mr-2" role="button" href="">Lihat Daftar Kelas</a></td>
-                        <td class="align-middle"><a class="btn btn-info btn-sm mr-2" role="button" href="" >Edit</a><a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusAmpuan/<?= $dft['id_guru']; ?>">Hapus</a></td>
+                        <td class="align-middle"><?= $dft['ampuan']; ?></td>
+                        <td class="align-middle">
+                        <button type="button" class="btn btn-info edit" id="ampuan"  data-id_guru="<?= $dft['id_guru']; ?>" data-nama="<?= $dft['nama']; ?>"  >
+                            Edit
+                        </button>
+                        <!-- data-toggle="modal" data-target="#editAmpuan" -->
+                        <a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusAmpuan/">Hapus</a></td>
                         </td>
                     </tr>
                 <?php endforeach; }?> 

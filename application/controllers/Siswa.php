@@ -62,7 +62,7 @@ class Siswa extends CI_Controller
     {
         $data['page']='surveiKegiatan';
         $data['kuesioner']=$this->kuesioner_model->getSurveiKegiatan();
-        $data['cek']=$this->kuesioner_model->getAksi();
+        // $data['cek']=$this->kuesioner_model->getAksi();
         $this->load->view('templates/header_s',$data);
         $this->load->view('siswa/evaluasiKegiatan',$data);
         $this->load->view('templates/footer');

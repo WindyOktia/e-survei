@@ -6,10 +6,21 @@ class Guru_model extends CI_model
     {
         return $this->db->get('guru')->result_array();
     }
-    
-    public function getById()
+
+    public function getAmpuan()
     {
-        
+        return $this->db->get('v_ampuan')->result_array();
+    }
+    
+    public function getById($id_guru)
+    {
+        $this->db->select('*');
+		$this->db->from('guru');
+		$this->db->join('ampuan', 'guru.id_guru=ampuan.id_guru');
+		$this->db->join('kelas', 'ampuan.id_kelas=kelas.id_kelas');
+		$this->db->where('ampuan.id_guru',$id_guru);
+		$query = $this->db->get();
+		return $query;
     }
 
     public function add($nama, $kelas)
@@ -37,7 +48,7 @@ class Guru_model extends CI_model
 
     public function edit()
     {
-
+        
     }
 
     public function delete($id)

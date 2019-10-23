@@ -269,13 +269,22 @@ class Admin extends CI_Controller
     {
         $data['page']='guru';
 
-        $data['guru'] = $this->Guru_model->getAll();
+        $data['ampuan'] = $this->Guru_model->getAmpuan();
         $data['kelas'] = $this->Kelas_model->getAll();
 
-
+        $this->load->view('templates/modalBox',$data);
         $this->load->view('templates/header', $data);
         $this->load->view('admin/guru', $data);
         $this->load->view('templates/footer');  
+    }
+
+    public function guruById(){
+        $id_guru=$this->input->post('id_guru');
+    	$kelas=$this->Guru_model->getById($id_guru)->result();
+    	foreach ($kelas as $result) {
+    		$value[] = (float) $result->id_kelas;
+    	}
+    	echo json_encode($value);
     }
 
     public function tbhAmpuan()

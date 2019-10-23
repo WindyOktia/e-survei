@@ -15,7 +15,8 @@ class Kuesioner_model extends CI_model
 
     public function getAksi()
     {
-        return $this->db->get('aksi')->result_array();
+        return $this->db->get_where('aksi', ['nipd'=> $this->session->userdata('nipd')])->result_array();
+        // return $this->db->get('aksi')->result_array();
     }
 
     public function getSoalGuru()
@@ -216,11 +217,27 @@ class Kuesioner_model extends CI_model
 //----------------------------------------------------------------------------------------- SISWA Down here
     public function getSurveiKegiatan()
     {
-        return $this->db->get_where('v_s_kegiatan', ['id_kelas'=> $this->session->userdata('id_kelas')])->result_array();
+        $id_kelas=$this->session->userdata('id_kelas');
+        $nipd=$this->session->userdata('nipd');
+        $this->db->select('*');
+        $this->db->from('v_s_kegiatan');
+        $this->db->where('id_kelas',$id_kelas); 
+        $this->db->where('id_kuesioner NOT IN(select id_kuesioner from aksi where nipd='.$nipd.')'); 
+        $query = $this->db->get(); 
+        return $query->result_array();  
+        // return $this->db->get_where('v_s_kegiatan', ['id_kelas'=> $this->session->userdata('id_kelas')])->result_array();
     }
 
     public function getSurveiGuru()
     {
+        // $id_kelas=$this->session->userdata('id_kelas');
+        // $nipd=$this->session->userdata('nipd');
+        // $this->db->select('*');
+        // $this->db->from('v_s_guru');
+        // $this->db->where('id_kelas',$id_kelas); 
+        // $this->db->where('id_guru NOT IN(select id_guru from aksi_guru where nipd='.$nipd.')'); 
+        // $query = $this->db->get(); 
+        // return $query->result_array();  
         return $this->db->get_where('v_s_guru', ['id_kelas'=> $this->session->userdata('id_kelas')])->result_array();
     }
 
