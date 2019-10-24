@@ -278,15 +278,25 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');  
     }
 
-    public function guruById(){
-        $id_guru=$this->input->post('id_guru');
-    	$kelas=$this->Guru_model->getById($id_guru)->result();
-    	foreach ($kelas as $result) {
-    		$value[] = (float) $result->id_kelas;
-    	}
-    	echo json_encode($value);
-    }
+    // public function guruById(){
+    //     $id_guru=$this->input->post('id_guru');
+    // 	$kelas=$this->Guru_model->getById($id_guru)->result();
+    // 	foreach ($kelas as $result) {
+    // 		$value[] = (float) $result->id_kelas;
+    // 	}
+    // 	echo json_encode($value);
+    // }
 
+    public function updateGuru()
+    {
+        $nama = $this->input->post('nama',TRUE);
+		$kelas = $this->input->post('kelas_edit',TRUE);
+		$id_guru = $this->input->post('id_guru',TRUE);
+        $this->Guru_model->update($nama,$kelas,$id_guru);
+        $this->session->set_flashdata('flash', 'Ditambahkan');
+		redirect('admin/guru');
+    }
+    
     public function tbhAmpuan()
     {
         $nama = $this->input->post('nama',TRUE);

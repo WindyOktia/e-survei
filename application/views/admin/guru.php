@@ -65,11 +65,10 @@
                         <td class="align-middle"><?= $dft['nama']; ?></td>
                         <td class="align-middle"><?= $dft['ampuan']; ?></td>
                         <td class="align-middle">
-                        <button type="button" class="btn btn-info edit" id="ampuan"  data-id_guru="<?= $dft['id_guru']; ?>" data-nama="<?= $dft['nama']; ?>"  >
+                        <button type="button" class="btn btn-info edit" id="ampuan"  data-id_guru="<?= $dft['id_guru']; ?>" data-nama="<?= $dft['nama']; ?>" data-ampuan="<?= $dft['ampuan']; ?>" data-toggle="modal" data-target="#editAmpuan" >
                             Edit
                         </button>
-                        <!-- data-toggle="modal" data-target="#editAmpuan" -->
-                        <a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusAmpuan/">Hapus</a></td>
+                        <a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusAmpuan/<?= $dft['id_guru']; ?>">Hapus</a></td>
                         </td>
                     </tr>
                 <?php endforeach; }?> 

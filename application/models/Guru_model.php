@@ -12,16 +12,16 @@ class Guru_model extends CI_model
         return $this->db->get('v_ampuan')->result_array();
     }
     
-    public function getById($id_guru)
-    {
-        $this->db->select('*');
-		$this->db->from('guru');
-		$this->db->join('ampuan', 'guru.id_guru=ampuan.id_guru');
-		$this->db->join('kelas', 'ampuan.id_kelas=kelas.id_kelas');
-		$this->db->where('ampuan.id_guru',$id_guru);
-		$query = $this->db->get();
-		return $query;
-    }
+    // public function getById($id_guru)
+    // {
+    //     $this->db->select('*');
+	// 	$this->db->from('guru');
+	// 	$this->db->join('ampuan', 'guru.id_guru=ampuan.id_guru');
+	// 	$this->db->join('kelas', 'ampuan.id_kelas=kelas.id_kelas');
+	// 	$this->db->where('ampuan.id_guru',$id_guru);
+	// 	$query = $this->db->get();
+	// 	return $query;
+    // }
 
     public function add($nama, $kelas)
     {
@@ -46,9 +46,29 @@ class Guru_model extends CI_model
 		$this->db->trans_complete();
     }
 
-    public function edit()
+    public function update($nama,$kelas,$id_guru)
     {
-        
+        $this->db->trans_start();
+			//UPDATE TO PACKAGE
+			$data  = array(
+				'nama' => $nama
+			);
+			$this->db->where('id_guru',$id_guru);
+			$this->db->update('guru', $data);
+			
+			//DELETE DETAIL PACKAGE
+			$this->db->delete('ampuan', array('id_guru' => $id_guru));
+
+			$result = array();
+			    foreach($kelas AS $key => $val){
+				     $result[] = array(
+				      'id_guru'  	=> $id_guru,
+				      'id_kelas'  	=> $_POST['kelas_edit'][$key]
+				     );
+			    }      
+			//MULTIPLE INSERT TO DETAIL TABLE
+			$this->db->insert_batch('ampuan', $result);
+		$this->db->trans_complete();
     }
 
     public function delete($id)
