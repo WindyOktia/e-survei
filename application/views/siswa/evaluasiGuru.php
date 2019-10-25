@@ -26,6 +26,7 @@
                 <thead>
                 <tr>
                     <th>No</th>
+                    <th>No Dokumen</th>
                     <th>Nama Guru</th>
                     <th>Tanggal Mulai</th>
                     <th>Aksi</th>
@@ -35,6 +36,7 @@
                 <?php if(isset($sguru)){$i=1;foreach ($sguru as $sguru) : ?>
                     <tr>
                         <td class="align-middle"><?= $i++ ?></td>
+                        <td class="align-middle"><?= $sguru['id_survei_guru']; ?></td>
                         <td class="align-middle"><?= $sguru['nama']; ?></td>
                         <td class="align-middle"><?= $sguru['tgl_mulai']; ?></td>
                         <td class="align-middle">

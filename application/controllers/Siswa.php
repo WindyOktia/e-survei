@@ -30,11 +30,11 @@ class Siswa extends CI_Controller
 
     public function formSurveiGuru($idk,$idg)
     {   
-        $uri_segments= "siswa/surveiGuru";
-        $uri = base_url().$uri_segments;
-        if($this->kuesioner_model->aksiGuru($idg)){
-            echo "<script>javascript:alert('Anda Sudah Mengisi Survei Ini '); window.location = '".$uri."'</script>";
-        }
+        // $uri_segments= "siswa/surveiGuru";
+        // $uri = base_url().$uri_segments;
+        // if($this->kuesioner_model->aksiGuru($idg)){
+        //     echo "<script>javascript:alert('Anda Sudah Mengisi Survei Ini '); window.location = '".$uri."'</script>";
+        // }
         $data['page']='surveiGuru';
         $data['detail']=$this->kuesioner_model->getThisGuru($idk,$idg);
         $data['soal']=$this->kuesioner_model->getSoalGuru();

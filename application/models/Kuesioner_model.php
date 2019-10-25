@@ -232,6 +232,15 @@ class Kuesioner_model extends CI_model
 
     public function getSurveiGuru()
     {
+        $id_kelas=$this->session->userdata('id_kelas');
+        $nipd=$this->session->userdata('nipd');
+        return $this->db->query('SELECT t1.id_survei_guru,t1.tgl_mulai, t1.tgl_selesai,t1.id_guru,t1.nama, 
+        t1.id_kelas FROM (SELECT * FROM v_s_guru WHERE v_s_guru.id_kelas="'.$id_kelas.'") t1 LEFT JOIN 
+        (SELECT v_s_guru.id_survei_guru,v_s_guru.tgl_mulai, v_s_guru.tgl_selesai,v_s_guru.id_guru,
+        v_s_guru.nama, v_s_guru.id_kelas FROM v_s_guru, aksi_guru WHERE 
+        aksi_guru.id_survei_guru=v_s_guru.id_survei_guru AND aksi_guru.id_guru=v_s_guru.id_guru AND 
+        aksi_guru.nipd="'.$nipd.'" AND v_s_guru.id_kelas="'.$id_kelas.'") t2 ON (t1.id_survei_guru=t2.id_survei_guru AND 
+        t1.id_guru=t2.id_guru) where t2.id_guru IS NULL')->result_array();
         // $id_kelas=$this->session->userdata('id_kelas');
         // $nipd=$this->session->userdata('nipd');
         // $this->db->select('*');
@@ -240,7 +249,7 @@ class Kuesioner_model extends CI_model
         // $this->db->where('id_guru NOT IN(select id_guru from aksi_guru where nipd='.$nipd.')'); 
         // $query = $this->db->get(); 
         // return $query->result_array();  
-        return $this->db->get_where('v_s_guru', ['id_kelas'=> $this->session->userdata('id_kelas')])->result_array();
+        // return $this->db->get_where('v_s_guru', ['id_kelas'=> $this->session->userdata('id_kelas')])->result_array();
     }
 
     public function getDetailSurveiKegiatan($id)
