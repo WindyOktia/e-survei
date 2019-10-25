@@ -209,8 +209,10 @@ class Kuesioner_model extends CI_model
     public function deleteKuesioner($id)
     {
         $this->db->trans_start();
+            
 			$this->db->delete('kuesioner', array('id_kuesioner' => $id));
 			$this->db->delete('kuesioner_tmp', array('id_kuesioner' => $id));
+			$this->db->delete('aksi', array('id_kuesioner' => $id));
 		$this->db->trans_complete();
     }
 
