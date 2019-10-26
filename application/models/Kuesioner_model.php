@@ -37,7 +37,8 @@ class Kuesioner_model extends CI_model
 
     public function getAllSurveiKegiatan()
     {
-        return $this->db->get('kuesioner')->result_array();
+        return $this->db->get('v_a_kegiatan')->result_array();
+        // return $this->db->get('kuesioner')->result_array();
     }
 
     public function addKategori()
@@ -254,7 +255,7 @@ class Kuesioner_model extends CI_model
 
     public function getDetailSurveiKegiatan($id)
     {
-        return $this->db->get_where('kuesioner', ['id_kuesioner'=>$id])->result_array();
+        return $this->db->get_where('v_a_kegiatan', ['id_kuesioner'=>$id])->result_array();
     }
 
     public function getSoalKegiatan($id)
@@ -344,10 +345,11 @@ class Kuesioner_model extends CI_model
 
     public function getJumlahKuesioner()
     {
-        $this->db->select('count(id_kuesioner) as jumlah');
-        $this->db->from('kuesioner');
-        $query = $this->db->get(); 
-        return $query->result_array();  
+        return $this->db->query('SELECT COUNT(id_kuesioner) AS jumlah, sum(responden) as responden, SUM(sangat_baik) AS sangat_baik, SUM(baik) AS baik, SUM(cukup) AS cukup, SUM(buruk) AS kurang FROM v_a_kegiatan')->result_array();
+        // $this->db->select('count(id_kuesioner) as jumlah');
+        // $this->db->from('kuesioner');
+        // $query = $this->db->get(); 
+        // return $query->result_array();  
     }
 
 

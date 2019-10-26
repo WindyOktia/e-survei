@@ -6,10 +6,18 @@
         
     </div>
     <div class="card-body">
-        <h3>Judul</h3>
-        <p>Deskripsi</p>
+    <?php $i = 1; foreach ($detail as $detail) : $jum= ($detail['sangat_baik']+$detail['baik']+$detail['cukup']+$detail['buruk']);?>
+        <h3><?= $detail['judul']; ?></h3>
+        <p><?= $detail['deskripsi']; ?></p>
+        <div class="row">
+            <div class="col"><i class="fa fa-calendar-o text-danger"></i><span class="ml-2"><?= $detail['tgl_mulai'];?> - <?= $detail['tgl_selesai']?></span></div>
+            <div class="col"><i class="fa fa-navicon text-danger"></i><span class="ml-2"><?= $jum/$detail['responden'];?></span></div>
+            <div class="col"><i class="fa fa-user text-danger"></i><span class="ml-2"><?= $detail['responden'];?></span></div>
+            <div class="col"><i class="fa fa-commenting-o text-danger"></i><span class="ml-2"><?= $jum ?></span></div>
+        </div>
     </div>
 </div>   
+
 <div class="container">
     <div class="row">
     <div class="col-md-3">
@@ -21,10 +29,10 @@
                     <div class="widget-subtitle opacity-7">Jumlah</div>
                 </div>
                 <div class="widget-chart-flex">
-                    <div class="widget-numbers text-white">88%</div>
+                    <div class="widget-numbers text-white"><span id="sb"><?php $sangat_baik=$detail['sangat_baik']/$jum*100; echo (int)$sangat_baik ?></span>%</div>
                     <div class="widget-description ml-auto opacity-7">
                         <i class="fa fa-arrow-right "></i>
-                        <span class="pl-1">352/370</span></div>
+                        <span class="pl-1"><?= $detail['sangat_baik']; ?>/<?= $jum ?></span></div>
                 </div>
             </div>
         </div>
@@ -38,10 +46,10 @@
                     <div class="widget-subtitle opacity-7">Jumlah</div>
                 </div>
                 <div class="widget-chart-flex">
-                    <div class="widget-numbers text-white">88%</div>
+                    <div class="widget-numbers text-white"><span id="b"><?php $baik=$detail['baik']/$jum*100; echo (int)$baik ?></span>%</div>
                     <div class="widget-description ml-auto opacity-7">
                         <i class="fa fa-arrow-right "></i>
-                        <span class="pl-1">352/370</span></div>
+                        <span class="pl-1"><?= $detail['baik']; ?>/<?= $jum ?></span></div>
                 </div>
             </div>
         </div>
@@ -55,10 +63,10 @@
                     <div class="widget-subtitle opacity-7">Jumlah</div>
                 </div>
                 <div class="widget-chart-flex">
-                    <div class="widget-numbers text-white">88%</div>
+                    <div class="widget-numbers text-white"><span id="c"><?php $cukup=$detail['cukup']/$jum*100; echo (int)$cukup?></span>%</div>
                     <div class="widget-description ml-auto opacity-7">
                         <i class="fa fa-arrow-right "></i>
-                        <span class="pl-1">352/370</span></div>
+                        <span class="pl-1"><?= $detail['cukup']; ?>/<?= $jum ?></span></div>
                 </div>
             </div>
         </div>
@@ -72,10 +80,10 @@
                     <div class="widget-subtitle opacity-7">Jumlah</div>
                 </div>
                 <div class="widget-chart-flex">
-                    <div class="widget-numbers text-white">88%</div>
+                    <div class="widget-numbers text-white"><span id="k"><?php $kurang=$detail['buruk']/$jum*100; echo (int)$kurang ?></span>%</div>
                     <div class="widget-description ml-auto opacity-7">
                         <i class="fa fa-arrow-right "></i>
-                        <span class="pl-1">352/370</span></div>
+                        <span class="pl-1"><?= $detail['buruk']; ?>/<?= $jum ?></span></div>
                 </div>
             </div>
         </div>
@@ -83,5 +91,6 @@
     </div>
     </div>
 <div class="container">
-    <canvas id="myChart"></canvas>
+    <canvas id="kegiatan"></canvas>
 </div>
+<?php endforeach; ?>

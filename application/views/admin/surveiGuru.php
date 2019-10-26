@@ -76,23 +76,16 @@
             </tr>
             </thead>
             <tbody>
+            <?php $i = 1; foreach ($survei as $survei) : ?>
             <tr>
-                <td>10-10-2010</td>
+                <td><?= $survei['tgl_mulai']; ?></td>
                 <td>213</td>
                 <td>2</td>
                 <td>
-                <a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/detailSurveiGuru/">Analisa Survei</a>
+                <a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/detailSurveiGuru/<?= $survei['id_survei_guru']; ?>">Analisa Survei</a>
                 </td>
             </tr>
-            <tr>
-                <td>10-10-2010</td>
-                <td>210</td>
-                <td>9</td>
-                <td>
-                <a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/detailSurveiGuru/">Analisa Survei</a>
-                </td>
-            </tr>
-            
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>

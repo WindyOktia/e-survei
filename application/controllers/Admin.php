@@ -25,6 +25,7 @@ class Admin extends CI_Controller
     public function surveiGuru()
     {
         $data['page']='surveiGuru';
+        $data['survei'] = $this->Kuesioner_model->getAllSurveiGuru();
         $this->load->view('templates/header', $data);
         $this->load->view('admin/surveiGuru');  
         $this->load->view('templates/footer');  
@@ -42,17 +43,19 @@ class Admin extends CI_Controller
     {
         $data['page']='surveiKegiatan';
         $data['jml'] = $this->Kuesioner_model->getJumlahKuesioner();
+        $data['survei'] = $this->Kuesioner_model->getAllSurveiKegiatan();
         $this->load->view('templates/header', $data);
         $this->load->view('admin/surveiKegiatan',$data);
         $this->load->view('templates/footer');  
     }
 
-    public function detailSurveiKegiatan()
+    public function detailSurveiKegiatan($id)
     {
         $data['page']='surveiKegiatan';
+        $data['detail']=$this->Kuesioner_model->getDetailSurveiKegiatan($id);
         $this->load->view('templates/header', $data);
         $this->load->view('admin/detail/surveiKegiatan',$data);
-        $this->load->view('templates/footer'); 
+        $this->load->view('templates/footer',$data); 
     }
 
 //---------------------------------------------------End Dashboard
