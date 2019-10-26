@@ -3,7 +3,7 @@
     <div class="col-md-4">
     <?php $i = 1; foreach ($jml as $jml) : $J_all=(($jml['sangat_baik']+$jml['baik'])/($jml['sangat_baik']+$jml['baik']+$jml['cukup']+$jml['kurang']))*100; ?>
         <div
-            class="card mb-3 widget-chart widget-chart2 bg-primary text-left">
+            class="card mb-3 widget-chart widget-chart2 bg-info text-left">
             <div class="widget-chart-content text-white">
                 <div class="widget-chart-flex">
                     <div class="widget-title">Jumlah Kuesioner</div>
@@ -21,7 +21,7 @@
     </div>
     <div class="col-md-4">
         <div
-            class="card mb-3 widget-chart widget-chart2 bg-primary text-left">
+            class="card mb-3 widget-chart widget-chart2 bg-info text-left">
             <div class="widget-chart-content text-white">
                 <div class="widget-chart-flex">
                     <div class="widget-title">Responden</div>
@@ -81,7 +81,7 @@
             <?php $i = 1; foreach ($survei as $survei) : ?>
             <tr>
                 <td><?= $i++ ?></td>
-                <td><?= $survei['tgl_mulai']; ?></td>
+                <td><?= $survei['id_kuesioner']; ?></td>
                 <td><?= $survei['tgl_mulai']; ?></td>
                 <td><?= $survei['judul']; ?></td>
                 <td><?= $survei['responden']; ?></td>

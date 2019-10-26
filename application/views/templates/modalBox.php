@@ -15,7 +15,7 @@
             <div class="form">
                 <div class="">
                     <div class=" form-group">
-                        <label for="" class="">Nama Guru</label>
+                        <label for="" class="">Nama Guru <span><i class="text-danger">*</i></span></label>
                         <input name="nama" id="nama" type="" class="form-control" required>
                     </div>
                 </div>
@@ -27,14 +27,15 @@
                 </div>
                 <div class="">
                     <div class=" form-group">
-                        <label for="examplePassword11" class="">Kelas Ampuan <span class="text-danger"><i>(Baru)</i></span></label>
-                        <select name="kelas_edit[]" multiple="multiple" class="multiselect-dropdown form-control" required>
+                        <label for="examplePassword11" class="">Kelas Ampuan <span class="text-danger"><i>(Baru) *</i></span></label>
+                        <select name="kelas_edit[]" multiple="multiple" class="multiselect-dropdown form-control">
                             <?php if(isset($kelas)){foreach ($kelas as $kls) : ?>
                                 <option value="<?= $kls['id_kelas']; ?>"><?= $kls['kelas']; ?> <?= $kls['jurusan']; ?> <?= $kls['sub']; ?></option>
                             <?php endforeach; }?> 
                         </select>
                     </div>
                 </div>
+                <div><i class="text-danger">*</i><span> = lewati jika tidak ada perubahan</span></div>
             </div>
       </div>
       <div class="modal-footer">

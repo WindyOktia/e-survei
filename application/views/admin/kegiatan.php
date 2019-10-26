@@ -71,7 +71,6 @@
                 <tr>
                     <th>No</th>
                     <th>Kategori</th>
-                    <th>Detail Pertanyaan</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -80,10 +79,6 @@
                 <tr>
                 <td class="align-middle"><?= $i++ ?></td>
                     <td class="align-middle"><?= $kat['kategori']; ?></td>
-                    <td class="align-middle">
-                    <span>0 Pertanyaan</span>
-                        <a class="btn btn-info btn-sm ml-2" role="button" href="">Detail</a>
-                    </td>
                     <td class="align-middle">
                         <a class="btn btn-info btn-sm tombol-hapus" role="button" href="#">Edit</a>
                         <a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusKategori/<?= $kat['id_kategori']; ?>">Hapus</a></td>

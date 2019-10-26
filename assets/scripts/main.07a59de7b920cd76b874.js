@@ -1,36 +1,11 @@
-$(document).ready(function () {
-	var i = 1;
-	// $('#add').click(function () {
-	// 	i++;
-	// 	$('#dynamic_field').append('<tr id="row' + i + '" class="mt-2"><td>'+ i +'. </td><td><input type="text" name="pertanyaan[]" placeholder="Masukkan Pertanyaan" class="form-control name_list" required/><div class="row mt-2"><div class="col-3"><input type="text" name="opsi_1" placeholder="Opsi" class="form-control name_list" required/></div><div class="col-3"><input type="text" name="opsi_2" placeholder="Opsi" class="form-control name_list" required/></div><div class="col-3"><input type="text" name="opsi_3" placeholder="Opsi" class="form-control name_list" required/></div><div class="col-3"><input type="text" name="opsi_4" placeholder="Opsi" class="form-control name_list" required/></div></div></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
-	// });
+// $(document).ready(function () {
+	
 
-
-	$('#add').click(function () {
-		i++;
-		$('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="pertanyaan[]" placeholder="Masukkan Pertanyaan" class="form-control name_list" required/></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
-	});
-
-	$('#addPertanyaanGuru').click(function () {
-		i++;
-		$('#dynamicPertanyaanGuru').append('<tr id="row' + i + '"><td><input type="text" name="pertanyaan[]" placeholder="Masukkan Pertanyaan" class="form-control name_list" required/></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
-	});
-
-	$('#addSiswa').click(function () {
-		i++;
-		$('#dynamicSiswa').append('<tr id="row' + i + '"><td><input type="text" name="siswa[]" placeholder="Nama Siswa" class="form-control name_list col-4 d-inline-block" /><input type="number" name="nipd[]" placeholder="NIPD" class="form-control name_list col-2 d-inline-block" /><input type="text" name="namaIbu[]" placeholder="Nama Ibu" class="form-control name_list col-4 d-inline-block" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
-	});
-
-	$(document).on('click', '.btn_remove', function () {
-		var button_id = $(this).attr("id");
-		$('#row' + button_id + '').remove();
-	});
-
-	// ..................................................Custom below
+// 	// ..................................................Custom below
 
 	
 
-});
+// });
 
 
 ! function (t) {

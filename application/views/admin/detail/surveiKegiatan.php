@@ -16,13 +16,95 @@
             <div class="col"><i class="fa fa-commenting-o text-danger"></i><span class="ml-2"><?= $jum ?></span></div>
         </div>
     </div>
-</div>   
+</div>  
+
+<div class="card no-shadow bg-transparent no-border rm-borders mb-3">
+    <div class="card">
+        <div class="no-gutters row">
+            <div class="col-md-12 col-lg-4">
+                <ul class="list-group list-group-flush">
+                    <li class="bg-transparent list-group-item">
+                        <div class="widget-content p-0">
+                            <div class="widget-content-outer">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Skor Kuesioner
+                                        </div>
+                                        <div class="widget-subheading">Total Skor Kuesioner
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <div
+                                            class="widget-numbers ">
+                                            <?= ($detail['sangat_baik']*4)+($detail['baik']*3)+($detail['cukup']*2)+($detail['buruk']*1);?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-12 col-lg-4 ">
+                <ul class="list-group list-group-flush">
+                    <li class="bg-transparent list-group-item">
+                        <div class="widget-content p-0">
+                            <div class="widget-content-outer">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Skor Maksimum
+                                        </div>
+                                        <div class="widget-subheading">Skor Maksimum Kuesioner
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <div class="widget-numbers">
+                                        <?= $jum*4 ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <ul class="list-group list-group-flush">
+                    <li class="bg-transparent list-group-item">
+                        <div class="widget-content p-0">
+                            <div class="widget-content-outer">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Nilai
+                                        </div>
+                                        <div class="widget-subheading ">Nilai Kuesioner
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <div
+                                            class="widget-numbers text-success">
+                                            <?php $nilai=((($detail['sangat_baik']*4)+($detail['baik']*3)+($detail['cukup']*2)+($detail['buruk']*1))/($jum*4))*100; echo(int)$nilai?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="card mb-2">
+    <div class="container">Detail Info</div>
+</div> -->
 
 <div class="container">
     <div class="row">
     <div class="col-md-3">
         <div
-            class="card mb-3 widget-chart widget-chart2 bg-primary text-left">
+            class="card mb-3 widget-chart widget-chart2 bg-info text-left">
             <div class="widget-chart-content text-white">
                 <div class="widget-chart-flex">
                     <div class="widget-title">Sangat Baik</div>
@@ -39,7 +121,7 @@
     </div>
     <div class="col-md-3">
         <div
-            class="card mb-3 widget-chart widget-chart2 bg-primary text-left">
+            class="card mb-3 widget-chart widget-chart2 bg-info text-left">
             <div class="widget-chart-content text-white">
                 <div class="widget-chart-flex">
                     <div class="widget-title">Baik</div>
@@ -56,7 +138,7 @@
     </div>
     <div class="col-md-3">
         <div
-            class="card mb-3 widget-chart widget-chart2 bg-primary text-left">
+            class="card mb-3 widget-chart widget-chart2 bg-warning text-left">
             <div class="widget-chart-content text-white">
                 <div class="widget-chart-flex">
                     <div class="widget-title">Cukup</div>
@@ -73,7 +155,7 @@
     </div>
     <div class="col-md-3">
         <div
-            class="card mb-3 widget-chart widget-chart2 bg-primary text-left">
+            class="card mb-3 widget-chart widget-chart2 bg-warning text-left">
             <div class="widget-chart-content text-white">
                 <div class="widget-chart-flex">
                     <div class="widget-title">Kurang</div>
@@ -90,7 +172,8 @@
     </div>
     </div>
     </div>
-<div class="container">
+<div class="container mb-3">
     <canvas id="kegiatan"></canvas>
 </div>
 <?php endforeach; ?>
+

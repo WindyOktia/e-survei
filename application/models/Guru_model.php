@@ -56,18 +56,21 @@ class Guru_model extends CI_model
 			$this->db->where('id_guru',$id_guru);
 			$this->db->update('guru', $data);
 			
-			//DELETE DETAIL PACKAGE
-			$this->db->delete('ampuan', array('id_guru' => $id_guru));
+			if(!empty($kelas)){
+				//DELETE DETAIL PACKAGE
+				$this->db->delete('ampuan', array('id_guru' => $id_guru));
 
-			$result = array();
-			    foreach($kelas AS $key => $val){
-				     $result[] = array(
-				      'id_guru'  	=> $id_guru,
-				      'id_kelas'  	=> $_POST['kelas_edit'][$key]
-				     );
-			    }      
-			//MULTIPLE INSERT TO DETAIL TABLE
-			$this->db->insert_batch('ampuan', $result);
+				$result = array();
+					foreach($kelas AS $key => $val){
+						$result[] = array(
+						'id_guru'  	=> $id_guru,
+						'id_kelas'  	=> $_POST['kelas_edit'][$key]
+						);
+					}      
+				//MULTIPLE INSERT TO DETAIL TABLE
+				$this->db->insert_batch('ampuan', $result);
+			}
+			
 		$this->db->trans_complete();
     }
 

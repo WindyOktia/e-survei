@@ -39,7 +39,7 @@ class Siswa_model extends CI_model
 				      'nama'  	=> $_POST['siswa'][$key],
 				      'nipd'  	=> $_POST['nipd'][$key],
 				      'nama_ibu'  	=> $_POST['namaIbu'][$key],
-				      'id_kelas'  	=> $_POST['kelas'][$key],
+				      'id_kelas'  	=> $_POST['kelas']
 				     );
 			    }      
 			//MULTIPLE INSERT TO DETAIL TABLE
