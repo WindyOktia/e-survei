@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
     <div class="col-md-4">
-    <?php $i = 1; foreach ($jml as $jml) : $J_all=(($jml['sangat_baik']+$jml['baik'])/($jml['sangat_baik']+$jml['baik']+$jml['cukup']+$jml['kurang']))*100; ?>
+    <?php $i = 1; foreach ($jml as $jml) :$J_all=(($jml['sangat_baik']+$jml['baik'])/($jml['sangat_baik']+$jml['baik']+$jml['cukup']+$jml['kurang']))*100; ?>
         <div
             class="card mb-3 widget-chart widget-chart2 bg-info text-left">
             <div class="widget-chart-content text-white">
                 <div class="widget-chart-flex">
-                    <div class="widget-title">Jumlah Kuesioner</div>
+                    <div class="widget-title">Jumlah Kuesioner Terisi</div>
                     <div class="widget-subtitle opacity-7">
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="widget-subtitle opacity-7">Siswa</div>
                 </div>
                 <div class="widget-chart-flex">
-                    <div class="widget-numbers text-white"><?= $jml['responden']; ?></div>
+                    <div class="widget-numbers text-white"><?php echo $jml['responden']; ?></div>
                     <div class="widget-description ml-auto opacity-7">
                         <!-- <i class="fa fa-arrow-right "></i>
                         <span class="pl-1">aaa</span> -->
@@ -46,7 +46,7 @@
                     <div class="widget-subtitle text-white">Index</div>
                 </div>
                 <div class="widget-chart-flex">
-                    <div class="widget-numbers text-white"><?= (int)$J_all ?>%</div>
+                    <div class="widget-numbers text-white"><?php echo (int)$J_all;?>%</div>
                     <div class="widget-description ml-auto text-success">
                         <i class="fa fa-arrow-right "></i>
                         <span class="pr-1"> > Baik</span></div>
@@ -56,7 +56,7 @@
     </div>
     </div>
     </div>
-    <?php endforeach; ?>
+    <?php  endforeach; ?>
 
 <div class="card mb-3">
     <div class="card-header-tab card-header">
@@ -89,7 +89,7 @@
                 <a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/detailSurveiKegiatan/<?= $survei['id_kuesioner']; ?>">Hasil Survei</a>
                 </td>
             </tr>
-            <?php endforeach; ?>
+            <?php endforeach ; ?>
             </tbody>
         </table>
     </div>

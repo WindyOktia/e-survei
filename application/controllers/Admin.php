@@ -25,17 +25,20 @@ class Admin extends CI_Controller
     public function surveiGuru()
     {
         $data['page']='surveiGuru';
+        $data['jml'] = $this->Kuesioner_model->getJumlahKuesionerGuru();
         $data['survei'] = $this->Kuesioner_model->getAllSurveiGuru();
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/surveiGuru');  
+        $this->load->view('admin/surveiGuru',$data);  
         $this->load->view('templates/footer');  
     }
 
-    public function detailSurveiGuru()
+    public function detailSurveiGuru($id)
     {
         $data['page']='surveiGuru';
+        $data['survei'] = $this->Kuesioner_model->getThisSurveiGuru($id);
+        $data['detail'] = $this->Kuesioner_model->getDetailSurveiGuru($id);
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/detail/surveiGuru');  
+        $this->load->view('admin/detail/surveiGuru',$data);  
         $this->load->view('templates/footer'); 
     }
 
@@ -52,7 +55,7 @@ class Admin extends CI_Controller
     public function detailSurveiKegiatan($id)
     {
         $data['page']='surveiKegiatan';
-        $data['detail']=$this->Kuesioner_model->getDetailSurveiKegiatan($id);
+        $data['detail']=$this->Kuesioner_model->getHasilSurveiKegiatan($id);
         $this->load->view('templates/header', $data);
         $this->load->view('admin/detail/surveiKegiatan',$data);
         $this->load->view('templates/footer',$data); 
@@ -200,7 +203,8 @@ class Admin extends CI_Controller
     {
         $data['page']='siswaNonRegis';
         $data['nonregis'] = $this->Siswa_model->getNonRegis();
-
+        $data['kelas'] = $this->Kelas_model->getAll();
+        $this->load->view('templates/modalBox', $data);
         $this->load->view('templates/header', $data);
         $this->load->view('admin/siswaNonRegis', $data);
         $this->load->view('templates/footer');  
@@ -210,6 +214,8 @@ class Admin extends CI_Controller
     {
         $data['page']='userSiswa';
         $data['user'] = $this->Siswa_model->getUser();
+        $data['kelas'] = $this->Kelas_model->getAll();
+        $this->load->view('templates/modalBox', $data);
         $this->load->view('templates/header', $data);
         $this->load->view('admin/userSiswa', $data);
         $this->load->view('templates/footer');  
@@ -228,7 +234,32 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/userSiswa');
     }
-//-------------------------------------------------- End Siswa
+
+    public function updateUser()
+    {
+        $nama = $this->input->post('nama',TRUE);
+		$nipd = $this->input->post('nipd',TRUE);
+		$kelas = $this->input->post('kelas',TRUE);
+		$nama_ibu = $this->input->post('ibu',TRUE);
+		$password = $this->input->post('password',TRUE);
+        $id = $this->input->post('id_siswa',TRUE);
+        $this->Siswa_model->updateUser($nama,$nipd,$kelas,$nama_ibu,$password,$id);
+        $this->session->set_flashdata('flash', 'Ditambahkan');
+		redirect('admin/userSiswa');
+    }
+
+    public function updateNonRegis()
+    {
+        $nama = $this->input->post('nama',TRUE);
+		$nipd = $this->input->post('nipd',TRUE);
+		$kelas = $this->input->post('kelas',TRUE);
+		$nama_ibu = $this->input->post('ibu',TRUE);
+        $id = $this->input->post('id_siswa',TRUE);
+        $this->Siswa_model->updateNonRegis($nama,$nipd,$kelas,$nama_ibu, $id);
+        $this->session->set_flashdata('flash', 'Ditambahkan');
+		redirect('admin/siswaNonRegis');
+    }
+    //-------------------------------------------------- End Siswa
 
 //Kelas
 

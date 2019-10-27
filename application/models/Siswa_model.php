@@ -5,12 +5,12 @@ class Siswa_model extends CI_model
     public function getUser()
     {
         $role='2';//tampilkan kecuali role admin
-        return $this->db->get_where('user_siswa', ['role'=>$role])->result_array();
+        return $this->db->get_where('v_user_siswa', ['role'=>$role])->result_array();
     }
 
     public function getNonRegis()
     {
-        return $this->db->get('siswa_tmp')->result_array();
+        return $this->db->get('v_siswa_tmp')->result_array();
     }
 
     public function getById()
@@ -47,9 +47,62 @@ class Siswa_model extends CI_model
 		$this->db->trans_complete();
     }
 
-    public function edit()
+    public function updateNonRegis($nama,$nipd,$kelas,$nama_ibu,$id)
     {
+        $this->db->trans_start();
+            if(!empty($nama)){
+                $data  = array(
+                    'nama' => $nama,
+                    'nipd' => $nipd,
+                    'nama_ibu' => $nama_ibu
+                );
+                $this->db->where('id',$id);
+			    $this->db->update('siswa_tmp', $data);
+            }
+			
+			
+			if($kelas != 0){
+                $data  = array(
+                    'id_kelas' => $kelas
+                );
+				$this->db->where('id',$id);
+			    $this->db->update('siswa_tmp', $data);
+            }
+			
+		$this->db->trans_complete();
+    }
 
+    public function updateUser($nama,$nipd,$kelas,$nama_ibu,$password,$id)
+    {
+        $this->db->trans_start();
+            if(!empty($nama)){
+                $data  = array(
+                    'nama' => $nama,
+                    'nipd' => $nipd,
+                    'nama_ibu' => $nama_ibu
+                );
+                $this->db->where('id',$id);
+			    $this->db->update('user_siswa', $data);
+            }
+			
+			
+			if($kelas != 0){
+                $data  = array(
+                    'id_kelas' => $kelas
+                );
+				$this->db->where('id',$id);
+			    $this->db->update('user_siswa', $data);
+            }
+            
+            if(!empty($password)){
+                $data  = array(
+                    'password' => md5($password)
+                );
+                $this->db->where('id',$id);
+			    $this->db->update('user_siswa', $data);
+            }
+			
+		$this->db->trans_complete();
     }
 
     public function delete($id)

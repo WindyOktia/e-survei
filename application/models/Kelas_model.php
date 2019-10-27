@@ -30,6 +30,12 @@ class Kelas_model extends CI_model
 
     public function delete($id)
     {
+        $this->db->trans_start();
         $this->db->delete('kelas', ['id_kelas' => $id]);
+        $this->db->delete('siswa_tmp', ['id_kelas' => $id]);
+        $this->db->delete('user_siswa', ['id_kelas' => $id]);
+        $this->db->delete('ampuan', ['id_kelas' => $id]);
+        $this->db->delete('kuesioner_tmp', ['id_kelas' => $id]);
+        $this->db->trans_complete();
     }
 }

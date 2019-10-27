@@ -27,6 +27,7 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>NIPD</th>
+                <th>Kelas</th>
                 <th>Nama Ibu</th>
                 <th>Aksi</th>
             </tr>
@@ -37,8 +38,14 @@
                 <td class="align-middle"><?= $i++ ?></td>
                     <td class="align-middle"><?= $non['nama']; ?></td>
                     <td class="align-middle"><?= $non['nipd']; ?></td>
+                    <td class="align-middle"><?= $non['kelas']; ?></td>
                     <td class="align-middle"><?= $non['nama_ibu']; ?></td>
-                    <td class="align-middle"><a class="btn btn-info btn-sm mr-2" role="button" href="<?= base_url(); ?>admin/<?= $non['id']; ?>">Edit</a><a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusSiswa/<?= $non['id']; ?>">Hapus</a></td>
+                    <td class="align-middle">
+                    <button type="button" class="btn btn-sm btn-info nonRegis" id="edit_siswa" data-nama="<?= $non['nama']; ?>" data-nipd="<?= $non['nipd']; ?>" data-kelas="<?= $non['kelas']; ?>" data-ibu="<?= $non['nama_ibu']; ?>" data-id="<?= $non['id']; ?>" data-toggle="modal" data-target="#nonRegis" >
+                            Edit
+                    </button>
+                    <a class="btn btn-danger btn-sm tombol-hapus" role="button" href="<?= base_url(); ?>admin/hapusSiswa/<?= $non['id']; ?>">Hapus</a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
