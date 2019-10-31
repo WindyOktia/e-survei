@@ -8,7 +8,7 @@
         <p>No Survei</p>
         <p>Tanggal Mulai</p>
         <p>Tanggal Selesai</p>
-        <p>Jumlah Guru dalam Evaluasi</p>
+        <p>Jumlah Guru Ternilai</p>
         </div>
         <div class="col">
         <?php if(isset($survei)){$i=1;foreach ($survei as $survei) :  ?>

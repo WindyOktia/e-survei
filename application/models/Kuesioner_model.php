@@ -19,6 +19,11 @@ class Kuesioner_model extends CI_model
         // return $this->db->get('aksi')->result_array();
     }
 
+    public function getThisPertanyaan($id)
+    {
+        return $this->db->get_where('soal', ['id_kategori'=> $id])->result_array();
+    }
+
     public function getSoalGuru()
     {
         return $this->db->get('soal_guru')->result_array();
@@ -50,6 +55,11 @@ class Kuesioner_model extends CI_model
         // return $this->db->get('kuesioner')->result_array();
     }
 
+    public function getThisSurveiKegiatan()
+    {
+        return $this->db->get('kuesioner')->result_array();
+    }
+
     public function addKategori()
     {
         $data = [
@@ -72,6 +82,13 @@ class Kuesioner_model extends CI_model
         $this->db->trans_start();
 			$this->db->delete('soal', array('id_kategori' => $id));
 			$this->db->delete('kategori', array('id_kategori' => $id));
+		$this->db->trans_complete();
+    }
+
+    public function deletePertanyaan($id)
+    {
+        $this->db->trans_start();
+			$this->db->delete('soal', array('id_soal' => $id));
 		$this->db->trans_complete();
     }
 
@@ -360,7 +377,8 @@ class Kuesioner_model extends CI_model
 
     public function getJumlahKuesioner()
     {
-        return $this->db->query('SELECT COUNT(id_kuesioner) AS jumlah, sum(responden) as responden, SUM(sangat_baik) AS sangat_baik, SUM(baik) AS baik, SUM(cukup) AS cukup, SUM(buruk) AS kurang FROM v_a_kegiatan')->result_array();
+        // return $this->db->query('SELECT COUNT(id_kuesioner) AS jumlah, sum(responden) as responden, SUM(sangat_baik) AS sangat_baik, SUM(baik) AS baik, SUM(cukup) AS cukup, SUM(buruk) AS kurang FROM v_a_kegiatan')->result_array();
+        return $this->db->query('SELECT COUNT(DISTINCT(aksi.id_kuesioner)) AS total, COUNT(DISTINCT(aksi.nipd)) AS responden,((SUM(v_a_kegiatan.sangat_baik+v_a_kegiatan.baik))/(SUM(v_a_kegiatan.sangat_baik+v_a_kegiatan.baik+v_a_kegiatan.cukup+v_a_kegiatan.buruk))*100) as kepuasan FROM aksi LEFT JOIN v_a_kegiatan on aksi.id_kuesioner=v_a_kegiatan.id_kuesioner')->result_array();
         // $this->db->select('count(id_kuesioner) as jumlah');
         // $this->db->from('kuesioner');
         // $query = $this->db->get(); 
@@ -369,7 +387,8 @@ class Kuesioner_model extends CI_model
     }
     public function getJumlahKuesionerGuru()
     {
-        return $this->db->query('SELECT count(DISTINCT(v_a_guru.id_survei_guru)) as jumlah,v_a_guru.id_survei_guru, sum(v_a_guru.responden)as responden,sum(v_a_guru.sangat_baik)as SB,sum(v_a_guru.baik) as B, sum(v_a_guru.cukup) as c, sum(v_a_guru.buruk) as k FROM `v_a_guru`')->result_array();
+        // return $this->db->query('SELECT count(DISTINCT(v_a_guru.id_survei_guru)) as jumlah,v_a_guru.id_survei_guru, sum(v_a_guru.responden)as responden,sum(v_a_guru.sangat_baik)as SB,sum(v_a_guru.baik) as B, sum(v_a_guru.cukup) as c, sum(v_a_guru.buruk) as k FROM `v_a_guru`')->result_array();
+        return $this->db->query('SELECT COUNT(DISTINCT(aksi_guru.id_survei_guru)) AS total, COUNT(DISTINCT(aksi_guru.nipd)) AS responden,((SUM(v_a_guru.sangat_baik+v_a_guru.baik))/(SUM(v_a_guru.sangat_baik+v_a_guru.baik+v_a_guru.cukup+v_a_guru.buruk))*100) as kepuasan FROM aksi_guru LEFT JOIN v_a_guru ON aksi_guru.id_survei_guru=v_a_guru.id_survei_guru')->result_array();
         // $this->db->select('count(id_kuesioner) as jumlah');
         // $this->db->from('kuesioner');
         // $query = $this->db->get(); 

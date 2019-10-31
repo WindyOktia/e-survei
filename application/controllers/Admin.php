@@ -99,7 +99,7 @@ class Admin extends CI_Controller
     {
         $data['page']='tbhKuesionerKegiatan';
         $data['kategori']=$this->Kuesioner_model->getKategori();
-        $data['survei'] = $this->Kuesioner_model->getAllSurveiKegiatan();
+        $data['survei'] = $this->Kuesioner_model->getThisSurveiKegiatan();
         $data['kelas']=$this->Kelas_model->getAll();
 
         $this->load->view('templates/header', $data);
@@ -356,10 +356,26 @@ class Admin extends CI_Controller
         $data['page']='pertanyaan';
 
         $data['kategori'] = $this->Kuesioner_model->getKategori();
-
         $this->load->view('templates/header', $data);
         $this->load->view('admin/kegiatan', $data);
         $this->load->view('templates/footer');  
+    }
+
+    public function editPertanyaan($id)
+    {
+        $data['page']='pertanyaan';
+        $data['id_p']=$id;
+        $data['pertanyaan']= $this->Kuesioner_model->getThisPertanyaan($id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/editPertanyaan', $data);
+        $this->load->view('templates/footer');  
+    }
+
+    public function hapusPertanyaan($id,$idp)
+    {
+        $this->Kuesioner_model->deletePertanyaan($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('admin/editPertanyaan/'.$idp.'');
     }
 
     public function tbhKategori()
@@ -495,6 +511,14 @@ class Admin extends CI_Controller
         $this->login_model->deleteAdmin($id);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/dftAdmin');
+    }
+
+    public function danger()
+    {
+        $data['page']='danger';
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/danger/reset');
+        $this->load->view('templates/footer');  
     }
 
 //-------------------------------------------------- End Admin

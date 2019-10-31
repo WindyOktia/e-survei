@@ -103,9 +103,10 @@
                                         Administrator System
                                         <i class="metismenu-state-icon fa fa-caret-down"></i>
                                     </a>
-                                    <ul <?php if($page =='tbhAdmin'||$page =='dftAdmin'):?>class="mm-show"<?php endif;?>>
+                                    <ul <?php if($page =='tbhAdmin'||$page =='dftAdmin'||$page =='danger'):?>class="mm-show"<?php endif;?>>
                                         <li><a <?php if($page =='tbhAdmin'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/Admin">Tambah Admin</a></li>
                                         <li><a <?php if($page =='dftAdmin'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/dftAdmin"href="#">Daftar Admin</a></li>
+                                        <li><a <?php if($page =='danger'):?>class="mm-active"<?php endif;?> href="<?= base_url(); ?>admin/danger"href="#"><span class="text-danger">Danger Area</span></a></li>
                                     </ul>
                                 </li>
                                 

@@ -184,4 +184,22 @@
   </div>
 </div>
 
-<!-- end of edit non regis -->
+<!-- end of edit Pertanyaan -->
+
+<!-- <div class="modal fade" id="editPertanyaan" tabindex="-1" role="dialog" aria-labelledby="user" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="user">Daftar Pertanyaan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- end of edit Pertanyaan -->

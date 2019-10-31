@@ -1,7 +1,8 @@
+
 <div class="container">
     <div class="row">
     <div class="col-md-4">
-    <?php $i = 1; foreach ($jml as $jml) :$J_all=(($jml['SB']+$jml['B'])/($jml['SB']+$jml['B']+$jml['c']+$jml['k']))*100; ?>
+    <?php $i = 1; foreach ($jml as $jml) : ?>
         <div
             class="card mb-3 widget-chart widget-chart2 bg-primary text-left">
             <div class="widget-chart-content text-white">
@@ -11,7 +12,7 @@
                     </div>
                 </div>
                 <div class="widget-chart-flex">
-                    <div class="widget-numbers"><?= $jml['jumlah']; ?>
+                    <div class="widget-numbers"><?= $jml['total']; ?>
                     </div>
                     <div class="widget-description ml-auto opacity-7">
                         <!-- <i class="fa fa-arrow-right "></i>
@@ -48,7 +49,7 @@
                     <div class="widget-subtitle text-white">Index</div>
                 </div>
                 <div class="widget-chart-flex">
-                    <div class="widget-numbers text-white"><?php echo (int)$J_all;?>%</div>
+                    <div class="widget-numbers text-white"><?php echo (int)$jml['kepuasan'];?>%</div>
                     <div class="widget-description ml-auto text-success">
                         <i class="fa fa-arrow-right "></i>
                         <span class="pr-1"> > Baik</span>

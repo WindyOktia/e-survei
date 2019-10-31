@@ -53,7 +53,7 @@
                                         <div class="form-group">
                                             <label for="username">NIPD</label>
                                             <div>
-                                                <input name="nipd" id="exampleText" class="form-control" placeholder="" type="number" required>
+                                                <input name="nipd" id="exampleText" class="form-control" placeholder="" type="number" minlength=3>
                                             </div>
                                         </div>
 
@@ -103,8 +103,9 @@
                                                 <table class="table" id="dynamicSiswa">
                                                     <tr>
                                                         <td>
+                                                            <label for="">1. </label>
                                                             <input type="text" name="siswa[]" placeholder="Nama Siswa" class="form-control name_list col-4 d-inline-block" required/>
-                                                            <input type="number" name="nipd[]" placeholder="NIPD" class="form-control name_list col-2 d-inline-block" required/>
+                                                            <input type="number" name="nipd[]" placeholder="NIPD" class="form-control name_list col-2 d-inline-block" minlength=3/>
                                                             <input type="text" name="namaIbu[]" placeholder="Nama Ibu" class="form-control name_list col-4 d-inline-block" required/>
                                                         </td>
                                                         <td><button type="button" name="addSiswa" id="addSiswa" class="btn btn-success">Add More</button></td>
