@@ -6,7 +6,7 @@ Proyek pembuatan e-survey SMA Bopkri 1 Yogyakarta
 - Framework : Codeigniter, Bootstrap
 
 - Login
-![alt text](img/ss1.png)
+
 
 - Admin Dashboard
 ![alt text](img/ss2.png)
