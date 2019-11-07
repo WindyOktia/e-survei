@@ -310,7 +310,7 @@ class Kuesioner_model extends CI_model
         return $this->db->get_where('v_s_guru', ['id_survei_guru'=>$idk,'id_guru'=>$idg,'id_kelas'=>$this->session->userdata('id_kelas')])->result_array();
     }
 
-    public function addAksi($nipd, $date, $kuesioner, $opsi)
+    public function addAksi($nipd, $date, $kuesioner, $opsi,$saran)
     {
         $this->db->trans_start();
 			//INSERT TO PACKAGE
@@ -332,11 +332,23 @@ class Kuesioner_model extends CI_model
 				     );
 			    }      
 			//MULTIPLE INSERT TO DETAIL TABLE
-			$this->db->insert_batch('aksi_tmp', $result);
+            $this->db->insert_batch('aksi_tmp', $result);
+            
+            if(!empty($saran)){
+                $value = [
+                    "nipd" => $nipd,
+                    "tgl_komen" => $date,
+                    "id_kuesioner" => $kuesioner,
+                    "komentar" => $saran
+                ];
+
+                $this->db->insert('masukan_kegiatan', $value);
+            }
+
 		$this->db->trans_complete();
     }
 
-    public function addAksiGuru($nipd, $date, $kuesioner, $opsi,$guru)
+    public function addAksiGuru($nipd, $date, $kuesioner, $opsi,$guru,$saran)
     {
         $this->db->trans_start();
 			//INSERT TO PACKAGE
@@ -359,8 +371,22 @@ class Kuesioner_model extends CI_model
 				     );
 			    }      
 			//MULTIPLE INSERT TO DETAIL TABLE
-			$this->db->insert_batch('aksi_guru_tmp', $result);
-		$this->db->trans_complete();
+            $this->db->insert_batch('aksi_guru_tmp', $result);
+
+            if(!empty($saran)){
+                $value = [
+                    "nipd" => $nipd,
+                    "tgl_komen" => $date,
+                    "id_survei_guru" => $kuesioner,
+                    "id_guru" => $guru,
+                    "komentar" => $saran
+                ];
+                $this->db->insert('masukan_guru', $value);
+            }
+
+        $this->db->trans_complete();
+
+        
     }
 
     public function aksi($id)

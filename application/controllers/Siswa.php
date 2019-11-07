@@ -36,6 +36,8 @@ class Siswa extends CI_Controller
         //     echo "<script>javascript:alert('Anda Sudah Mengisi Survei Ini '); window.location = '".$uri."'</script>";
         // }
         $data['page']='surveiGuru';
+        // $data['id_kuesioner']=$idk;
+        // $data['id_guru']=$idg;
         $data['detail']=$this->kuesioner_model->getThisGuru($idk,$idg);
         $data['soal']=$this->kuesioner_model->getSoalGuru();
         $this->load->view('templates/header_s',$data);
@@ -50,7 +52,8 @@ class Siswa extends CI_Controller
         $kuesioner = $this->input->post('id_survei',TRUE);
         $guru = $this->input->post('guru',TRUE);
         $opsi = $this->input->post('opsi',TRUE);
-        $this->kuesioner_model->addAksiGuru($nipd, $date, $kuesioner,$opsi,$guru);
+        $saran = $this->input->post('saran',TRUE);
+        $this->kuesioner_model->addAksiGuru($nipd, $date, $kuesioner,$opsi,$guru,$saran);
         $this->session->set_flashdata('flash', 'Ditambahkan');
 		redirect('siswa/surveiGuru');
     }
@@ -90,7 +93,8 @@ class Siswa extends CI_Controller
         $date = date('Y-m-d H:i:s');
         $kuesioner = $this->input->post('id_kuesioner',TRUE);
         $opsi = $this->input->post('opsi',TRUE);
-        $this->kuesioner_model->addAksi($nipd, $date, $kuesioner,$opsi);
+        $saran = $this->input->post('saran',TRUE);
+        $this->kuesioner_model->addAksi($nipd, $date, $kuesioner,$opsi,$saran);
         $this->session->set_flashdata('flash', 'Ditambahkan');
 		redirect('siswa/surveiKegiatan');
     }
