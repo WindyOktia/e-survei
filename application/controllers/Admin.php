@@ -35,8 +35,10 @@ class Admin extends CI_Controller
     public function detailSurveiGuru($id)
     {
         $data['page']='surveiGuru';
+        $data['id_survei']=$id;
         $data['survei'] = $this->Kuesioner_model->getThisSurveiGuru($id);
         $data['detail'] = $this->Kuesioner_model->getDetailSurveiGuru($id);
+        $data['komen'] = $this->Kuesioner_model->getKomenGuru($id);
         $this->load->view('templates/header', $data);
         $this->load->view('admin/detail/surveiGuru',$data);  
         $this->load->view('templates/footer'); 

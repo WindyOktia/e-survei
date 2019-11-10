@@ -61000,7 +61000,11 @@
 				setTimeout(function () {
 					t("#example").DataTable({
 						responsive: !0
-					}), t("#example2").DataTable({
+					}),
+					t("#komen").DataTable({
+						responsive: !0
+					}), 
+					t("#example2").DataTable({
 						scrollY: "292px",
 						scrollCollapse: !0,
 						paging: !1,

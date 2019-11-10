@@ -34,9 +34,16 @@ class Kuesioner_model extends CI_model
         return $this->db->get('v_s_kepuasan')->result_array();
     }
 
+    public function getKomenGuru($id)
+    {
+        return $this->db->query('SELECT masukan_guru.id_masukan_guru, masukan_guru.nipd, masukan_guru.id_survei_guru, masukan_guru.id_guru, guru.nama, masukan_guru.tgl_komen, masukan_guru.komentar FROM masukan_guru, guru WHERE masukan_guru.id_guru=guru.id_guru AND id_survei_guru="'.$id.'" ORDER BY guru.nama')->result_array();
+    }
+
     public function getDetailSurveiGuru($id)
     {
         return $this->db->query('SELECT v_a_guru.id_survei_guru, v_a_guru.id_guru, guru.nama, v_a_guru.responden, v_a_guru.sangat_baik, v_a_guru.baik, v_a_guru.cukup, v_a_guru.buruk, ((v_a_guru.sangat_baik * 4) + (v_a_guru.baik * 3) + (v_a_guru.cukup*2) + (v_a_guru.buruk*1)) AS Skor_guru, (SUM(CASE WHEN soal_guru.id_soal_aspek THEN 1 ELSE 0 END) * v_a_guru.responden * 4) AS Skor_maks FROM v_a_guru, soal_guru, guru WHERE v_a_guru.id_guru=guru.id_guru AND v_a_guru.id_survei_guru="'.$id.'" GROUP BY v_a_guru.id_survei_guru, v_a_guru.id_guru')->result_array();
+        // return $this->db->query('SELECT v_a_guru.id_survei_guru, v_a_guru.id_guru, guru.nama, v_a_guru.responden, v_a_guru.sangat_baik, v_a_guru.baik, v_a_guru.cukup, v_a_guru.buruk, ((v_a_guru.sangat_baik * 4) + (v_a_guru.baik * 3) + (v_a_guru.cukup*2) + (v_a_guru.buruk*1)) AS Skor_guru, (SUM(CASE WHEN soal_guru.id_soal_aspek THEN 1 ELSE 0 END) * v_a_guru.responden * 4) AS Skor_maks,(CASE WHEN v_a_guru.id_guru IN(SELECT masukan_guru.id_guru FROM masukan_guru,v_a_guru WHERE masukan_guru.id_survei_guru=v_a_guru.id_survei_guru AND masukan_guru.id_guru=v_a_guru.id_guru AND masukan_guru.id_survei_guru="'.$id.'") THEN (SELECT masukan_guru.komentar FROM masukan_guru, v_a_guru WHERE masukan_guru.id_survei_guru=v_a_guru.id_survei_guru AND masukan_guru.id_guru=v_a_guru.id_guru AND masukan_guru.id_survei_guru="'.$id.'") ELSE "-" end) as komen FROM v_a_guru, soal_guru, guru WHERE v_a_guru.id_guru=guru.id_guru AND v_a_guru.id_survei_guru="'.$id.'" GROUP BY v_a_guru.id_survei_guru, v_a_guru.id_guru')->result_array();
+        
     }
 
     public function getThisSurveiGuru($id)
