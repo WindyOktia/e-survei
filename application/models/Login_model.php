@@ -3,7 +3,7 @@
 class Login_model extends CI_model
 {
     function login($nipd,$pass)
-    {
+    {   
         $this->db->where('nipd',$nipd);
         $this->db->where('password',$pass);
         $result = $this->db->get('user_siswa',1);
